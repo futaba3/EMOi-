@@ -81,15 +81,27 @@ class GoodsViewController: UIViewController, UICollectionViewDelegate, UICollect
             // 一旦配列を初期化
             self.goods.removeAll()
             
-            // valueの中身が空の時は空の配列を入れる
-            let values = snapshot.value as? [String: [String: Any]] ?? [:]
-            
-            // valueの数だけ読み込みをループ
-            for value in values.values {
+            // 順番通りになっているsnapshot内の数だけ読み込みをループ
+            for child in snapshot.children {
+                
+                // DataSnapshotにキャスト(型変換)したvaluesを取り出してAny型からString型にキャストするのを安全に行うguard
+                guard let values = child as? DataSnapshot, let value = values.value as? [String: Any] else {
+                    return
+                }
+                
                 // valueをgoodインスタンスにしてgoods配列に保存
                 let good = Good(key: value["key"] as? String ?? "", title: value["title"] as? String ?? "", date: value["date"] as? String ?? "", category: value["category"] as? String ?? "", place: value["place"] as? String ?? "", image: value["image"] as? String ?? "")
                 self.goods.append(good)
             }
+            
+            // goodsがなければCollectionViewを非表示にして初期画面を出す
+            if self.goods.count == 0 {
+                print("goodsないです")
+                self.collectionView.isHidden = true
+            } else {
+                self.collectionView.isHidden = false
+            }
+            
             // アニメーション終了
             self.activityIndicatorView.stopAnimating()
             self.collectionView.reloadData()
@@ -156,6 +168,11 @@ class GoodsViewController: UIViewController, UICollectionViewDelegate, UICollect
         } else {
             return CGSize(width: self.view.bounds.width, height: 30)
         }
+    }
+    
+    // 初期画面に表示する追加画面への遷移ボタン
+    @IBAction func toAdd() {
+        
     }
     
     // 編集画面への画面遷移

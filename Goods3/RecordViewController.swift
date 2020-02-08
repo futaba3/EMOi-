@@ -80,17 +80,29 @@ class RecordViewController: UIViewController, UITableViewDataSource, UITableView
         ref.child(uid!).child("records").queryOrdered(byChild: "created").observeSingleEvent(of: .value, with: { (snapshot) in
             // 一旦配列を初期化
             self.records.removeAll()
-            // valueの中身が空の時は空の配列を入れる
-            let values = snapshot.value as? [String: [String: Any]] ?? [:]
+            
             // valueの数だけ読み込みをループ
-            for value in values.values {
-                print(value)
+            for child in snapshot.children {
+                
+                // DataSnapshotにキャスト(型変換)したvaluesを取り出してAny型からString型にキャストするのを安全に行うguard
+                guard let values = child as? DataSnapshot, let value = values.value as? [String: Any] else {
+                    return
+                }
                 
                 // valueをrecordインスタンスにしてrecords配列に保存
                 let record = Record(key: value["key"] as? String ?? "", title: value["title"] as? String ?? "", date: value["date"] as? String ?? "", category: value["category"] as? String ?? "", result: value["result"] as? String ?? "", place: value["place"] as? String ?? "", comment: value["comment"] as? String ?? "", emotion: value["emotion"] as? String ?? "", image: value["image"] as? String ?? "")
-                print(record)
+                //print(record)
                 self.records.append(record)
             }
+            
+            // goodsがなければCollectionViewを非表示にして初期画面を出す
+            if self.records.count == 0 {
+                print("goodsないです")
+                self.table.isHidden = true
+            } else {
+                self.table.isHidden = false
+            }
+            
             // アニメーション終了
             self.activityIndicatorView.stopAnimating()
             self.table.reloadData()
@@ -161,7 +173,12 @@ class RecordViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
-    // 選択されたとき
+    // 初期画面に表示する追加画面への遷移ボタン
+    @IBAction func toAdd() {
+        
+    }
+    
+    // 編集画面への画面遷移
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let record = records.filter { $0.category == self.categories[indexPath.section] } [indexPath.row]
         self.performSegue(withIdentifier: "toEditRecords", sender: record)
