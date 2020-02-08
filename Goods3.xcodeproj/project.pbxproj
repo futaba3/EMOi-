@@ -120,7 +120,6 @@
 		85197F4423DC52D500B91E5C /* Goods3 */ = {
 			isa = PBXGroup;
 			children = (
-				85FA91EE23DDC67F000052B0 /* EMOi.entitlements */,
 				85197F4523DC52D500B91E5C /* AppDelegate.swift */,
 				85197F6A23DC592700B91E5C /* LoginViewController.swift */,
 				85197F5D23DC592600B91E5C /* GoodsViewController.swift */,
@@ -145,6 +144,7 @@
 				85197F6523DC592700B91E5C /* FlopDesignFONT.otf */,
 				85197F5923DC592600B91E5C /* Kano.otf */,
 				85197F5023DC52DA00B91E5C /* LaunchScreen.storyboard */,
+				85FA91EE23DDC67F000052B0 /* EMOi.entitlements */,
 				85197F5B23DC592600B91E5C /* Goods2.entitlements */,
 				85197F7123DC592800B91E5C /* GoogleService-Info.plist */,
 				85197F5323DC52DA00B91E5C /* Info.plist */,

@@ -150,22 +150,8 @@ class EditCategoryViewController: UIViewController, UITableViewDataSource, UITab
                 return .delete
             }
         }
-        // 前の画面でgoods配列とrecords配列にcategories配列の全要素の何かが含まれていないか探す
-//        let found = self.categories.contains("")
-//        // 削除したいcategory内にデータがある場合は削除できない
-//        if table.isEditing {
-//
-//                // categoriesに含まれているとfoundはtrueになる
-//                let found = self.categories.contains("未分類")
-//                // foundがtrueなら削除できない
-//                if found == true {
-//                    return .none
-//                } else {
-//                    return .delete
-//                }
-//        }
         
-        return .delete
+        return .none
     }
     
     // editボタンを押したときの処理
@@ -190,13 +176,43 @@ class EditCategoryViewController: UIViewController, UITableViewDataSource, UITab
     
     // スワイプしたセルを削除
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
         if editingStyle == UITableViewCell.EditingStyle.delete {
-            categories.remove(at: indexPath.row)
-            print(categories[indexPath.row])
+            // 選択したcategoryを取得
+            let categoryName = categories[indexPath.row]
+            print(categoryName)
             
-            // 削除した後の配列をfirebaseに保存する
-            ref.child(uid!).child("categories").setValue(categories)
-            tableView.deleteRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
+            // goodsとrecordsのcategoryChild内にcategoryNameが含まれているものを絞り込む
+            self.ref.child(self.uid!).child("goods").queryOrdered(byChild: "category").queryEqual(toValue: categoryName).observeSingleEvent(of: .value, with: { (snapshot) in
+                let goods = snapshot.value as? [String: [String: Any]] ?? [:]
+                
+                self.ref.child(self.uid!).child("records").queryOrdered(byChild: "category").queryEqual(toValue: categoryName).observeSingleEvent(of: .value, with: { (snapshot) in
+                    let records = snapshot.value as? [String: [String: Any]] ?? [:]
+                    
+                    // categoryName入りのchildがなければ削除する
+                    if goods.count == 0 && records.count == 0 {
+                        self.categories.remove(at: indexPath.row)
+                        print(self.categories[indexPath.row])
+                        
+                        // 削除した後の配列をfirebaseに保存する
+                        self.ref.child(self.uid!).child("categories").setValue(self.categories)
+                        tableView.deleteRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
+                    } else {
+                        
+                        // goodsかrecordsかにcategoryが含まれていることを知らせるアラート
+                        let alert: UIAlertController = UIAlertController(title: "Stop!", message: "RECORDSまたはGOODSで使用されているCATEGORYは削除できません", preferredStyle: .alert)
+                        alert.addAction(
+                            UIAlertAction(
+                                title: "cancel",
+                                style: .cancel,
+                                handler: nil
+                            )
+                        )
+                        self.present(alert, animated: true, completion: nil)
+                         
+                    }
+                })
+            })
         }
     }
 
