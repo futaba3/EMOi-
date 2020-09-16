@@ -15,6 +15,8 @@ class RecordViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet var table: UITableView!
     
+    let searchController = UISearchController(searchResultsController: nil)
+    
     var records: [Record] = []
     var categories: [String] = []
     
@@ -46,6 +48,19 @@ class RecordViewController: UIViewController, UITableViewDataSource, UITableView
         activityIndicatorView.style = .whiteLarge
         activityIndicatorView.color = UIColor.init(red: 41/255, green: 94/255, blue: 164/255, alpha: 100/100)
         self.view.addSubview(activityIndicatorView)
+        
+    
+        // searchBarフォーカス時に背景色を暗くするか？
+        searchController.obscuresBackgroundDuringPresentation = true
+        // searchBarのスタイル
+        searchController.searchBar.searchBarStyle = UISearchBar.Style.prominent
+        // searchbarのサイズを調整
+        searchController.searchBar.sizeToFit()
+        // 何も入力されていなくてもReturnキーを押せるようにする
+        searchController.searchBar.enablesReturnKeyAutomatically = false
+        searchController.searchBar.placeholder = "Search"
+        // tableViewのヘッダーにsearchController.searchBarをセット
+        table.tableHeaderView = searchController.searchBar
         
         
     }
