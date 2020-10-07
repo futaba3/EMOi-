@@ -200,17 +200,6 @@ class AddGoodsViewController: UIViewController, UIImagePickerControllerDelegate,
             )
             present(alert, animated: true, completion: nil)
             
-        }else if self.dateTextField.text == ""{
-            let alert: UIAlertController = UIAlertController(title: "Stop!", message: "Dateを選択してください！", preferredStyle: .alert)
-            alert.addAction(
-                UIAlertAction(
-                    title: "cancel",
-                    style: .cancel,
-                    handler: nil
-                )
-            )
-            present(alert, animated: true, completion: nil)
-            
         }else{
             // 保存しますかアラートを出す
             let alert: UIAlertController = UIAlertController(title: "保存しますか？", message: titleTextField.text, preferredStyle: .alert)

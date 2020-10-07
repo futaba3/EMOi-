@@ -32,6 +32,7 @@
 		85197F8B23DC592900B91E5C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85197F7123DC592800B91E5C /* GoogleService-Info.plist */; };
 		85197F8D23DC592900B91E5C /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85197F7323DC592900B91E5C /* SelectCategoryViewController.swift */; };
 		85197F8F23DC592900B91E5C /* Goods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85197F7523DC592900B91E5C /* Goods.swift */; };
+		85D3DDC4252DFFB10037ACA6 /* PlaceHolderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D3DDC3252DFFB10037ACA6 /* PlaceHolderTextView.swift */; };
 		E0F03FF1AB93AFEA391A47FA /* Pods_Goods3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1CB963F57401ED08F0BE56B /* Pods_Goods3.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		85197F7123DC592800B91E5C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		85197F7323DC592900B91E5C /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
 		85197F7523DC592900B91E5C /* Goods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goods.swift; sourceTree = "<group>"; };
+		85D3DDC3252DFFB10037ACA6 /* PlaceHolderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderTextView.swift; sourceTree = "<group>"; };
 		85FA91EE23DDC67F000052B0 /* EMOi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EMOi.entitlements; sourceTree = "<group>"; };
 		C1CB963F57401ED08F0BE56B /* Pods_Goods3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Goods3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFAEEA469FE9762BC011F25B /* Pods-Goods3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Goods3.debug.xcconfig"; path = "Target Support Files/Pods-Goods3/Pods-Goods3.debug.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				85197F6F23DC592800B91E5C /* SectionHeader.swift */,
 				85197F6223DC592700B91E5C /* MyUITabbarController.swift */,
 				85197F5C23DC592600B91E5C /* MyUINavigationController.swift */,
+				85D3DDC3252DFFB10037ACA6 /* PlaceHolderTextView.swift */,
 				85197F6523DC592700B91E5C /* FlopDesignFONT.otf */,
 				85197F5923DC592600B91E5C /* Kano.otf */,
 				85197F5023DC52DA00B91E5C /* LaunchScreen.storyboard */,
@@ -307,6 +310,7 @@
 				85197F8423DC592900B91E5C /* LoginViewController.swift in Sources */,
 				85197F7923DC592900B91E5C /* GoodsViewController.swift in Sources */,
 				85197F8823DC592900B91E5C /* AddRecordViewController.swift in Sources */,
+				85D3DDC4252DFFB10037ACA6 /* PlaceHolderTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,7 +449,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Goods3/EMOi.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NWPYC5C8JF;
 				INFOPLIST_FILE = Goods3/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
@@ -453,6 +457,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kudoayana.Goods2;
 				PRODUCT_NAME = EMOi;
 				SWIFT_VERSION = 5.0;
@@ -467,7 +472,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Goods3/EMOi.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NWPYC5C8JF;
 				INFOPLIST_FILE = Goods3/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
@@ -475,6 +480,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kudoayana.Goods2;
 				PRODUCT_NAME = EMOi;
 				SWIFT_VERSION = 5.0;
