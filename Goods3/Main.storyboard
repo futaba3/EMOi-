@@ -360,8 +360,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="blv-nh-bvU" userLabel="Form View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="jPr-9a-ubF">
-                                                <rect key="frame" x="-3" y="236" width="377" height="180"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="jPr-9a-ubF">
+                                                <rect key="frame" x="-1" y="236" width="377" height="180"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oci-Hc-v1G">
                                                         <rect key="frame" x="0.0" y="0.0" width="377" height="45"/>
@@ -485,8 +485,8 @@
                                                     <constraint firstAttribute="height" constant="100" id="Cr8-5h-fcf"/>
                                                 </constraints>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMd-l9-M3B">
-                                                <rect key="frame" x="1" y="87" width="376" height="45"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMd-l9-M3B">
+                                                <rect key="frame" x="1" y="87" width="374" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="ewQ-io-6pd"/>
                                                 </constraints>
@@ -1689,8 +1689,8 @@ Email &amp; Password</string>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="19a-rz-VRB"/>
-        <segue reference="Dem-v5-kfw"/>
-        <segue reference="dvR-gD-n65"/>
+        <segue reference="Hx3-6Q-EG1"/>
+        <segue reference="O9r-mU-iBZ"/>
         <segue reference="2TF-LK-Shk"/>
         <segue reference="3fA-s1-1AK"/>
     </inferredMetricsTieBreakers>

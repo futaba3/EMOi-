@@ -139,8 +139,12 @@ class EditGoodsViewController: UIViewController, UIImagePickerControllerDelegate
     
     // "撮影する"ボタンを押した時のメソッド
     @IBAction func takePhoto() {
+        // アニメーション開始
+        activityIndicatorView.startAnimating()
         // カメラが使えるかの確認
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            // アニメーション終了
+            self.activityIndicatorView.stopAnimating()
             
             // カメラを起動
             let picker = UIImagePickerController()
@@ -160,8 +164,12 @@ class EditGoodsViewController: UIViewController, UIImagePickerControllerDelegate
     
     // カメラロールにある画像を読み込む時のメソッド
     @IBAction func openAlbum() {
+        // アニメーション開始
+        activityIndicatorView.startAnimating()
         // カメラロールを使えるかの確認
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            // アニメーション終了
+            self.activityIndicatorView.stopAnimating()
             // カメラロールの画像を選択して画像を表示するまでの一連の流れ
             let picker = UIImagePickerController()
             picker.sourceType = .photoLibrary
