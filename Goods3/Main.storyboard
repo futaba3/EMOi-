@@ -471,9 +471,15 @@
                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BO0-06-5bP">
-                                                <rect key="frame" x="263" y="422" width="100" height="100"/>
-                                                <color key="backgroundColor" red="0.93725490570000003" green="0.37647059560000001" blue="0.1921568662" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mgX-fU-krL">
+                                                <rect key="frame" x="263" y="424" width="100" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="ACF-zK-0fV"/>
+                                                    <constraint firstAttribute="width" constant="100" id="lJQ-Jq-lR1"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BO0-06-5bP">
+                                                <rect key="frame" x="263" y="424" width="100" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="9u4-lh-KAW"/>
                                                     <constraint firstAttribute="height" constant="100" id="Cr8-5h-fcf"/>
@@ -573,7 +579,9 @@
                                             <constraint firstAttribute="height" constant="800" id="BbJ-eQ-rq6"/>
                                             <constraint firstItem="Alp-Jt-Fd5" firstAttribute="leading" secondItem="blv-nh-bvU" secondAttribute="leading" constant="8" id="EH8-Q8-3kt"/>
                                             <constraint firstItem="ajg-BZ-fd4" firstAttribute="top" secondItem="ZU4-Af-aBP" secondAttribute="bottom" constant="8" id="KDg-ef-Vyv"/>
+                                            <constraint firstItem="mgX-fU-krL" firstAttribute="leading" secondItem="BO0-06-5bP" secondAttribute="leading" id="N2V-g5-TlT"/>
                                             <constraint firstItem="T1s-Oc-EaB" firstAttribute="top" secondItem="CMd-l9-M3B" secondAttribute="top" id="QOV-L2-eg1"/>
+                                            <constraint firstItem="mgX-fU-krL" firstAttribute="top" secondItem="BO0-06-5bP" secondAttribute="top" id="RP8-fO-YXw"/>
                                             <constraint firstItem="58u-sb-DVi" firstAttribute="top" secondItem="Alp-Jt-Fd5" secondAttribute="bottom" constant="8" id="UxP-Hk-bN2"/>
                                             <constraint firstItem="ZU4-Af-aBP" firstAttribute="top" secondItem="jPr-9a-ubF" secondAttribute="bottom" constant="8" id="Zlu-d4-B2z"/>
                                             <constraint firstItem="jPr-9a-ubF" firstAttribute="leading" secondItem="blv-nh-bvU" secondAttribute="leading" constant="-1" id="eCi-x6-Fdb"/>
@@ -641,6 +649,7 @@
                         <outlet property="commentTextView" destination="q5J-Mi-cWf" id="fVv-SO-JKE"/>
                         <outlet property="dateTextField" destination="IQb-25-pdG" id="XSN-9h-CPF"/>
                         <outlet property="emotionLabel" destination="vVs-Vo-nw1" id="4Uw-Zp-dF2"/>
+                        <outlet property="haikeiImageView" destination="mgX-fU-krL" id="OIf-I1-BwL"/>
                         <outlet property="navigationBar" destination="RGD-P8-HAN" id="CVd-RN-twG"/>
                         <outlet property="placeTextField" destination="XCL-nz-qx3" id="DuZ-PH-j3v"/>
                         <outlet property="recordsImageView" destination="BO0-06-5bP" id="diW-n9-n4D"/>
@@ -1444,7 +1453,6 @@ Email &amp; Password</string>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TQO-5u-rHm">
                                                 <rect key="frame" x="263" y="337" width="100" height="100"/>
-                                                <color key="backgroundColor" red="0.93725490570000003" green="0.37647059560000001" blue="0.1921568662" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="7C3-jo-VMG"/>
                                                     <constraint firstAttribute="width" constant="100" id="q4G-Dl-Zti"/>
@@ -1517,6 +1525,13 @@ Email &amp; Password</string>
                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sbX-kt-WKV">
+                                                <rect key="frame" x="263" y="337" width="100" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="5Wk-PW-7BQ"/>
+                                                    <constraint firstAttribute="height" constant="100" id="hho-ax-JN5"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -1530,6 +1545,7 @@ Email &amp; Password</string>
                                             <constraint firstItem="p6x-Bj-yIm" firstAttribute="leading" secondItem="X82-ry-Xek" secondAttribute="trailing" constant="-376" id="FCl-8v-U5p"/>
                                             <constraint firstItem="X82-ry-Xek" firstAttribute="leading" secondItem="fOR-7w-VNH" secondAttribute="leading" constant="-1" id="GAc-DC-Iqk"/>
                                             <constraint firstAttribute="trailing" secondItem="TQO-5u-rHm" secondAttribute="trailing" constant="12" id="JzO-60-TNm"/>
+                                            <constraint firstItem="sbX-kt-WKV" firstAttribute="top" secondItem="TQO-5u-rHm" secondAttribute="top" id="KW3-6q-hPC"/>
                                             <constraint firstAttribute="trailing" secondItem="OOC-hR-Xdn" secondAttribute="trailing" constant="5" id="LOd-5g-F1R"/>
                                             <constraint firstItem="qri-XS-uCP" firstAttribute="leading" secondItem="fOR-7w-VNH" secondAttribute="leading" constant="8" id="M2O-2z-BzP"/>
                                             <constraint firstItem="EfR-Mr-muG" firstAttribute="leading" secondItem="fOR-7w-VNH" secondAttribute="leading" constant="8" id="PDt-9i-iOP"/>
@@ -1550,6 +1566,7 @@ Email &amp; Password</string>
                                             <constraint firstItem="X82-ry-Xek" firstAttribute="top" secondItem="p6x-Bj-yIm" secondAttribute="top" id="tPK-eL-l31"/>
                                             <constraint firstItem="pnq-h4-rxZ" firstAttribute="top" secondItem="e4S-F9-wuS" secondAttribute="bottom" constant="8" id="u2r-i0-A4h"/>
                                             <constraint firstItem="EfR-Mr-muG" firstAttribute="top" secondItem="nbY-Lc-eZw" secondAttribute="bottom" constant="24" id="vVf-1N-nTE"/>
+                                            <constraint firstItem="sbX-kt-WKV" firstAttribute="leading" secondItem="TQO-5u-rHm" secondAttribute="leading" id="wgk-7l-n9B"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1592,6 +1609,7 @@ Email &amp; Password</string>
                         <outlet property="commentTextView" destination="IxJ-oa-AhG" id="aov-Oq-Dqf"/>
                         <outlet property="dateTextField" destination="98l-3a-GAT" id="UAC-pw-QiT"/>
                         <outlet property="emotionLabel" destination="pnq-h4-rxZ" id="fIU-DH-5BS"/>
+                        <outlet property="haikeiImageView" destination="sbX-kt-WKV" id="hyF-GS-Nfl"/>
                         <outlet property="placeTextField" destination="cWM-dD-RV9" id="VqH-R1-bfg"/>
                         <outlet property="recordsImageView" destination="TQO-5u-rHm" id="Hzr-im-5KO"/>
                         <outlet property="resultTextField" destination="kjV-FH-RQX" id="5Ud-ir-5e5"/>
@@ -1671,7 +1689,7 @@ Email &amp; Password</string>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="19a-rz-VRB"/>
-        <segue reference="GGm-za-Xs0"/>
+        <segue reference="Dem-v5-kfw"/>
         <segue reference="dvR-gD-n65"/>
         <segue reference="2TF-LK-Shk"/>
         <segue reference="3fA-s1-1AK"/>

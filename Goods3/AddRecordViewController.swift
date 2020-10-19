@@ -14,6 +14,7 @@ import FirebaseDatabase
 class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate, UITextFieldDelegate, UINavigationControllerDelegate{
     
     @IBOutlet var recordsImageView: UIImageView!
+    @IBOutlet var haikeiImageView: UIImageView!
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var dateTextField: UITextField!
     @IBOutlet var resultTextField: UITextField!
@@ -138,6 +139,12 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
             appDelegate.commentText = nil
         }
         
+        // recordsImageViewに画像が入っていない時、デフォルト画像を表示する
+        if recordsImageView.image == nil {
+            let image = UIImage(named: "bg_nangoku.png")
+            haikeiImageView.image = image
+        }
+        
         // tabbarを非表示
         self.tabBarController?.tabBar.isHidden = true
     }
@@ -168,6 +175,8 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
             picker.allowsEditing = true
             
             present(picker, animated: true, completion: nil)
+            // 画像を設定したらhaikeiImageView非表示
+            haikeiImageView.removeFromSuperview()
         } else {
             // カメラが使えない時エラーがコンソールに出ます
             print("error")
@@ -186,6 +195,7 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
             picker.allowsEditing = true
             
             present(picker, animated: true, completion: nil)
+            haikeiImageView.removeFromSuperview()
         }
     }
     

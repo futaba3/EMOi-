@@ -14,6 +14,7 @@ import FirebaseDatabase
 class EditRecordViewController: UIViewController,  UIImagePickerControllerDelegate, UITextFieldDelegate, UINavigationControllerDelegate{
     
     @IBOutlet var recordsImageView: UIImageView!
+    @IBOutlet var haikeiImageView: UIImageView!
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var dateTextField: UITextField!
     @IBOutlet var resultTextField: UITextField!
@@ -134,6 +135,15 @@ class EditRecordViewController: UIViewController,  UIImagePickerControllerDelega
             appDelegate.commentText = nil
         }
         
+        // recordsImageViewに画像が入っていない時、デフォルト画像を表示する
+        if recordsImageView.image == nil {
+            let image = UIImage(named: "bg_nangoku.png")
+            haikeiImageView.image = image
+        } else {
+            // 画像が設定されたら裏のimageviewは非表示にする
+            haikeiImageView.removeFromSuperview()
+        }
+        
         
         // emotionの番号に合わせてデフォルトで選択状態にする
         if record?.emotion == "1" {
@@ -197,6 +207,8 @@ class EditRecordViewController: UIViewController,  UIImagePickerControllerDelega
             picker.allowsEditing = true
             
             present(picker, animated: true, completion: nil)
+            // 画像が設定されたら裏のimageviewは非表示にする
+            haikeiImageView.removeFromSuperview()
         } else {
             // カメラが使えない時エラーがコンソールに出ます
             print("error")
@@ -215,6 +227,7 @@ class EditRecordViewController: UIViewController,  UIImagePickerControllerDelega
             picker.allowsEditing = true
             
             present(picker, animated: true, completion: nil)
+            haikeiImageView.removeFromSuperview()
         }
     }
     

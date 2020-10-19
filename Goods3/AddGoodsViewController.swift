@@ -63,10 +63,6 @@ class AddGoodsViewController: UIViewController, UIImagePickerControllerDelegate,
         navigationBar.tintColor = .black
         navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Kano", size: 20), .foregroundColor: UIColor.black]
         
-//        // imageviewの角を丸める
-//        self.goodsImageView.layer.cornerRadius = 20
-//        self.haikeiImageView.layer.cornerRadius = 20
-        
         // 更新中にくるくるするやつ
         activityIndicatorView = UIActivityIndicatorView()
         activityIndicatorView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
@@ -106,9 +102,6 @@ class AddGoodsViewController: UIViewController, UIImagePickerControllerDelegate,
         if goodsImageView.image == nil {
             let image = UIImage(named: "trading_goods.png")
             haikeiImageView.image = image
-        } else {
-            // 画像が設定されたら裏のimageviewは非表示にする
-            haikeiImageView.removeFromSuperview()
         }
 
         // tabbarを非表示
@@ -144,6 +137,8 @@ class AddGoodsViewController: UIViewController, UIImagePickerControllerDelegate,
             picker.allowsEditing = true
             
             present(picker, animated: true, completion: nil)
+            // 画像が設定されたら裏のimageviewは非表示にする
+            haikeiImageView.removeFromSuperview()
         } else {
             // カメラが使えない時エラーがコンソールに出ます
             print("error")
@@ -166,6 +161,7 @@ class AddGoodsViewController: UIViewController, UIImagePickerControllerDelegate,
             picker.allowsEditing = true
             
             present(picker, animated: true, completion: nil)
+            haikeiImageView.removeFromSuperview()
         }
     }
 
