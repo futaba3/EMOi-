@@ -135,19 +135,17 @@ class RecordViewController: UIViewController, UITableViewDataSource, UITableView
         let Record = records.filter { $0.category == self.categories[indexPath.section] } [indexPath.row]
         
         if Record.emotion == "1" {
-            cell.emotion.image = UIImage(named: "1")
+            cell.emotion.image = UIImage(named: "1_color")
         } else  if Record.emotion == "2" {
-            cell.emotion.image = UIImage(named: "2")
+            cell.emotion.image = UIImage(named: "2_color")
         } else if Record.emotion == "3" {
-            cell.emotion.image = UIImage(named: "3")
+            cell.emotion.image = UIImage(named: "3_color")
         } else  if Record.emotion == "4" {
-            cell.emotion.image = UIImage(named: "4")
+            cell.emotion.image = UIImage(named: "4_color")
         } else  if Record.emotion == "5" {
-            cell.emotion.image = UIImage(named: "5")
-        } else {
-            // リリースする前にはここ消す
-            cell.emotion.image = UIImage(named: "4")
+            cell.emotion.image = UIImage(named: "5_color")
         }
+
         
         cell.title.text = Record.title
         cell.date.text = Record.date

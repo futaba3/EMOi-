@@ -17,10 +17,9 @@ class RecordTableViewCell: UITableViewCell {
     @IBOutlet var mainimg: UIImageView!
     @IBOutlet var result: UILabel!
     
-    // imageviewの角を丸める
+
     override func awakeFromNib() {
-//        mainimg.layer.cornerRadius = 20
-//        mainimg.clipsToBounds = true
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

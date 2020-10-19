@@ -83,8 +83,12 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         // ナビゲーションバーのフォントと色
         navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Kano", size: 20), .foregroundColor: UIColor.black]
         
-//        // imageviewの角を丸める
-//        self.recordsImageView.layer.cornerRadius = 20
+        // emotionボタンの角を丸める
+        selectedEmotion1Button.layer.cornerRadius = 30
+        selectedEmotion2Button.layer.cornerRadius = 30
+        selectedEmotion3Button.layer.cornerRadius = 30
+        selectedEmotion4Button.layer.cornerRadius = 30
+        selectedEmotion5Button.layer.cornerRadius = 30
         
         // 更新中にくるくるするやつ
         activityIndicatorView = UIActivityIndicatorView()
@@ -205,11 +209,12 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
             // 押されたボタンのタグを取得して分岐させる
             if let tag = actionTag(rawValue: button.tag) {
                 switch tag {
+                // 目ハート（ピンク）
                 case .action1:
                     // 1以外が選択されている場合
                     if emotionLabel.text != "1" {
                         emotionLabel.text = "1"
-                        button.backgroundColor = UIColor.init(red: 176/255, green: 236/255, blue: 205/255, alpha: 100/100)
+                        button.backgroundColor = UIColor.init(red: 255/255, green: 105/255, blue: 180/255, alpha: 100/100)
                     } else {
                         emotionLabel.text = ""
                         button.backgroundColor = UIColor.white
@@ -221,10 +226,11 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
                     self.selectedEmotion4Button.backgroundColor = UIColor.white
                     self.selectedEmotion5Button.backgroundColor = UIColor.white
 
+                // 笑顔（オレンジ）
                 case .action2:
                     if emotionLabel.text != "2" {
                         emotionLabel.text = "2"
-                        button.backgroundColor = UIColor.init(red: 176/255, green: 236/255, blue: 205/255, alpha: 100/100)
+                        button.backgroundColor = UIColor.init(red: 255/255, green: 140/255, blue: 0/255, alpha: 100/100)
                     } else {
                         emotionLabel.text = ""
                         button.backgroundColor = UIColor.white
@@ -235,10 +241,11 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
                     self.selectedEmotion4Button.backgroundColor = UIColor.white
                     self.selectedEmotion5Button.backgroundColor = UIColor.white
 
+                // 驚き（黄色）
                 case .action3:
                     if emotionLabel.text != "3" {
                         emotionLabel.text = "3"
-                        button.backgroundColor = UIColor.init(red: 176/255, green: 236/255, blue: 205/255, alpha: 100/100)
+                        button.backgroundColor = UIColor.init(red: 255/255, green: 250/255, blue: 50/255, alpha: 100/100)
                     } else {
                         emotionLabel.text = ""
                         button.backgroundColor = UIColor.white
@@ -249,6 +256,7 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
                     self.selectedEmotion4Button.backgroundColor = UIColor.white
                     self.selectedEmotion5Button.backgroundColor = UIColor.white
 
+                // 真顔（緑）
                 case .action4:
                     if emotionLabel.text != "4" {
                         emotionLabel.text = "4"
@@ -263,10 +271,11 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
                     self.selectedEmotion3Button.backgroundColor = UIColor.white
                     self.selectedEmotion5Button.backgroundColor = UIColor.white
                     
+                // がっかり（青）
                 case .action5:
                     if emotionLabel.text != "5" {
                         emotionLabel.text = "5"
-                        button.backgroundColor = UIColor.init(red: 176/255, green: 236/255, blue: 205/255, alpha: 100/100)
+                        button.backgroundColor = UIColor.init(red: 65/255, green: 105/255, blue: 225/255, alpha: 100/100)
                     } else {
                         emotionLabel.text = ""
                         button.backgroundColor = UIColor.white
