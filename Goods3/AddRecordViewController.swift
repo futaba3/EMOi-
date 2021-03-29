@@ -59,9 +59,15 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         ref = Database.database().reference()
         
         // dateピッカーの設定
-        datePicker.datePickerMode = UIDatePicker.Mode.date
-        datePicker.timeZone = NSTimeZone.local
-        datePicker.locale = Locale.current
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+            datePicker.datePickerMode = .date
+        } else {
+            // Fallback on earlier versions
+            datePicker.datePickerMode = UIDatePicker.Mode.date
+            datePicker.timeZone = NSTimeZone.local
+            datePicker.locale = Locale.current
+        }
         
         // 日付決定バーの生成
         let datetoolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))

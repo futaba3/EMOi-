@@ -40,7 +40,13 @@ class AddGoodsViewController: UIViewController, UIImagePickerControllerDelegate,
         ref = Database.database().reference()
         
         // dateピッカーの設定
-        datePicker.datePickerMode = UIDatePicker.Mode.date
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+            datePicker.datePickerMode = .date
+        } else {
+            // Fallback on earlier versions
+            datePicker.datePickerMode = UIDatePicker.Mode.date
+        }
         datePicker.timeZone = NSTimeZone.local
         datePicker.locale = Locale.current
         

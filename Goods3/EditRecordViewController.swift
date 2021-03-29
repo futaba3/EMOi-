@@ -78,10 +78,24 @@ class EditRecordViewController: UIViewController,  UIImagePickerControllerDelega
         
         emotionsNameArray = ["1", "2", "3", "4", "5"]
         
+        // stringの日付をDate型に直す
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        formatter.locale = Locale(identifier: "ja_JP")
+        // 元の日付をDatePickerに代入する
+        let date = formatter.date(from: dateTextField.text!)
+        
         // dateピッカーの設定
-        datePicker.datePickerMode = UIDatePicker.Mode.date
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+            datePicker.datePickerMode = .date
+        } else {
+            // Fallback on earlier versions
+            datePicker.datePickerMode = UIDatePicker.Mode.date
+        }
         datePicker.timeZone = NSTimeZone.local
         datePicker.locale = Locale.current
+        datePicker.date = date ?? Date()
         
         // 日付決定バーの生成
         let datetoolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
