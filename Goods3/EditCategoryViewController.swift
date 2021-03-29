@@ -163,7 +163,8 @@ class EditCategoryViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         //sourceIndexPath にデータの元の位置、destinationIndexPath に移動先の位置
         //CellValueを取得
-        if let targetTitle: String = categories[sourceIndexPath.row] {
+        let editedTitle: String? = categories[sourceIndexPath.row]
+        if let targetTitle = editedTitle {
             //元の位置のデータを配列から削除
             categories.remove(at:sourceIndexPath.row)
             //移動先の位置にデータを配列に挿入
