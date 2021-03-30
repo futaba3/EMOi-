@@ -5,6 +5,7 @@ target 'Goods3' do
 
   pod 'Firebase/Storage'
   pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
   pod 'Firebase/Database'
   pod 'FirebaseUI'
 
