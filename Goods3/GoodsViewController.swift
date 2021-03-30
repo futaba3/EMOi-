@@ -15,6 +15,8 @@ class GoodsViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     @IBOutlet var collectionView: UICollectionView!
     
+//    let searchController = UISearchController(searchResultsController: nil)
+    
     var goods: [Good] = []
     var categories: [String] = []
     
@@ -29,12 +31,12 @@ class GoodsViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = Database.database().reference()
-        storageRef = Storage.storage().reference()
         
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        ref = Database.database().reference()
+        storageRef = Storage.storage().reference()
         
         // 更新中にくるくるするやつ
         activityIndicatorView = UIActivityIndicatorView()
@@ -47,6 +49,22 @@ class GoodsViewController: UIViewController, UICollectionViewDelegate, UICollect
         activityIndicatorView.color = UIColor.init(red: 41/255, green: 94/255, blue: 164/255, alpha: 100/100)
         self.view.addSubview(activityIndicatorView)
         
+//        // searchBarフォーカス時に背景色を暗くするか？
+//        searchController.obscuresBackgroundDuringPresentation = false
+//        // searchBarのスタイル
+//        searchController.searchBar.searchBarStyle = UISearchBar.Style.prominent
+//        // searchbarのサイズを調整
+//        searchController.searchBar.sizeToFit()
+//        // 何も入力されていなくてもReturnキーを押せるようにする
+//        searchController.searchBar.enablesReturnKeyAutomatically = false
+//        searchController.searchBar.placeholder = "Search"
+//        // UISearchResultsUpdating関連のやつ
+//        searchController.searchResultsUpdater = self
+////        // tableViewのヘッダーにsearchController.searchBarをセット
+//        collectionView.collectionHeaderView = searchController.searchBar
+//        automaticallyAdjustsScrollViewInsets = false
+//        definesPresentationContext = true
+//
         
     }
     
@@ -188,6 +206,47 @@ class GoodsViewController: UIViewController, UICollectionViewDelegate, UICollect
             viewController.good = sender as? Good
         }
     }
+    
+//    func reload(query: String!) {
+//        // アニメーション開始
+//        activityIndicatorView.startAnimating()
+//        print(query)
+//
+//        // 配列内でqueryを含むものをfilterでOR検索
+//        // localizedCaseInsensitiveContainsは大文字小文字の区別をせずに検索
+//        let filterGoods = goods.filter { $0.title.localizedCaseInsensitiveContains(query) || $0.date.localizedCaseInsensitiveContains(query) || $0.category.localizedCaseInsensitiveContains(query) || $0.place.localizedCaseInsensitiveContains(query) }
+//        print(filterGoods)
+//        print("検索しました")
+//        // 一旦配列を初期化
+//        self.goods.removeAll()
+//        // filter後の配列を入れる
+//        self.goods.append(contentsOf: filterGoods)
+//
+//        // アニメーション終了
+//        self.activityIndicatorView.stopAnimating()
+//        self.collectionView.reloadData()
+//    }
+//
+//    // SearchBarの検索ボタンを押した時
+//    func updateSearchResults(for searchController: UISearchController) {
+//        // tabbarを非表示
+//        self.tabBarController?.tabBar.isHidden = true
+//        guard let searchText = searchController.searchBar.text else { return }
+//        // !=でノットイコール
+//        if searchText != "" {
+//            self.reload(query: searchText)
+////            print(searchText)
+//        } else {
+//            // 空欄なら全部表示する
+//            load()
+//        }
+//
+//        if !searchController.isActive {
+//            // tabbarを表示
+//            self.tabBarController?.tabBar.isHidden = false
+//            print("Cancelled")
+//        }
+//    }
     
     
 }

@@ -212,11 +212,13 @@ class RecordViewController: UIViewController, UITableViewDataSource, UITableView
     func reload(query: String!) {
         // アニメーション開始
         activityIndicatorView.startAnimating()
+        print(query)
         
         // 配列内でqueryを含むものをfilterでOR検索
         // localizedCaseInsensitiveContainsは大文字小文字の区別をせずに検索
         let filterRecords = records.filter { $0.title.localizedCaseInsensitiveContains(query) || $0.date.localizedCaseInsensitiveContains(query) || $0.category.localizedCaseInsensitiveContains(query) || $0.result.localizedCaseInsensitiveContains(query) || $0.place.localizedCaseInsensitiveContains(query) || $0.comment.localizedCaseInsensitiveContains(query) }
         print(filterRecords)
+        print("検索しました")
         // 一旦配列を初期化
         self.records.removeAll()
         // filter後の配列を入れる
@@ -235,6 +237,7 @@ class RecordViewController: UIViewController, UITableViewDataSource, UITableView
         // !=でノットイコール
         if searchText != "" {
             self.reload(query: searchText)
+//            print(searchText)
         } else {
             // 空欄なら全部表示する
             load()
