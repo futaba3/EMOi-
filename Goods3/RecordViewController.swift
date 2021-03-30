@@ -11,12 +11,13 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 
-class RecordViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
+class RecordViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var table: UITableView!
     
-    let searchController = UISearchController(searchResultsController: nil)
-    
+//    , UISearchResultsUpdating
+//    let searchController = UISearchController(searchResultsController: nil)
+
     var records: [Record] = []
     var categories: [String] = []
     
@@ -50,19 +51,19 @@ class RecordViewController: UIViewController, UITableViewDataSource, UITableView
         self.view.addSubview(activityIndicatorView)
         
     
-        // searchBarフォーカス時に背景色を暗くするか？
-        searchController.obscuresBackgroundDuringPresentation = false
-        // searchBarのスタイル
-        searchController.searchBar.searchBarStyle = UISearchBar.Style.prominent
-        // searchbarのサイズを調整
-        searchController.searchBar.sizeToFit()
-        // 何も入力されていなくてもReturnキーを押せるようにする
-        searchController.searchBar.enablesReturnKeyAutomatically = false
-        searchController.searchBar.placeholder = "Search"
-        // UISearchResultsUpdating関連のやつ
-        searchController.searchResultsUpdater = self
-        // tableViewのヘッダーにsearchController.searchBarをセット
-        table.tableHeaderView = searchController.searchBar
+//        // searchBarフォーカス時に背景色を暗くするか？
+//        searchController.obscuresBackgroundDuringPresentation = false
+//        // searchBarのスタイル
+//        searchController.searchBar.searchBarStyle = UISearchBar.Style.prominent
+//        // searchbarのサイズを調整
+//        searchController.searchBar.sizeToFit()
+//        // 何も入力されていなくてもReturnキーを押せるようにする
+//        searchController.searchBar.enablesReturnKeyAutomatically = false
+//        searchController.searchBar.placeholder = "Search"
+//        // UISearchResultsUpdating関連のやつ
+//        searchController.searchResultsUpdater = self
+//        // tableViewのヘッダーにsearchController.searchBarをセット
+//        table.tableHeaderView = searchController.searchBar
         
         
     }
@@ -197,7 +198,7 @@ class RecordViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let record = records.filter { $0.category == self.categories[indexPath.section] } [indexPath.row]
         // 画面遷移する前に検索バーを隠す
-        self.searchController.isActive = false
+//        self.searchController.isActive = false
         self.performSegue(withIdentifier: "toEditRecords", sender: record)
     }
     
@@ -209,46 +210,46 @@ class RecordViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
-    func reload(query: String!) {
-        // アニメーション開始
-        activityIndicatorView.startAnimating()
-        print(query)
-        
-        // 配列内でqueryを含むものをfilterでOR検索
-        // localizedCaseInsensitiveContainsは大文字小文字の区別をせずに検索
-        let filterRecords = records.filter { $0.title.localizedCaseInsensitiveContains(query) || $0.date.localizedCaseInsensitiveContains(query) || $0.category.localizedCaseInsensitiveContains(query) || $0.result.localizedCaseInsensitiveContains(query) || $0.place.localizedCaseInsensitiveContains(query) || $0.comment.localizedCaseInsensitiveContains(query) }
-        print(filterRecords)
-        print("検索しました")
-        // 一旦配列を初期化
-        self.records.removeAll()
-        // filter後の配列を入れる
-        self.records.append(contentsOf: filterRecords)
-        
-        // アニメーション終了
-        self.activityIndicatorView.stopAnimating()
-        self.table.reloadData()
-    }
-    
-    // SearchBarの検索ボタンを押した時
-    func updateSearchResults(for searchController: UISearchController) {
-        // tabbarを非表示
-        self.tabBarController?.tabBar.isHidden = true
-        guard let searchText = searchController.searchBar.text else { return }
-        // !=でノットイコール
-        if searchText != "" {
-            self.reload(query: searchText)
-//            print(searchText)
-        } else {
-            // 空欄なら全部表示する
-            load()
-        }
-        
-        if !searchController.isActive {
-            // tabbarを表示
-            self.tabBarController?.tabBar.isHidden = false
-            print("Cancelled")
-        }
-    }
+//    func reload(query: String!) {
+//        // アニメーション開始
+//        activityIndicatorView.startAnimating()
+//        print(query)
+//        
+//        // 配列内でqueryを含むものをfilterでOR検索
+//        // localizedCaseInsensitiveContainsは大文字小文字の区別をせずに検索
+//        let filterRecords = records.filter { $0.title.localizedCaseInsensitiveContains(query) || $0.date.localizedCaseInsensitiveContains(query) || $0.category.localizedCaseInsensitiveContains(query) || $0.result.localizedCaseInsensitiveContains(query) || $0.place.localizedCaseInsensitiveContains(query) || $0.comment.localizedCaseInsensitiveContains(query) }
+//        print(filterRecords)
+//        print("検索しました")
+//        // 一旦配列を初期化
+//        self.records.removeAll()
+//        // filter後の配列を入れる
+//        self.records.append(contentsOf: filterRecords)
+//        
+//        // アニメーション終了
+//        self.activityIndicatorView.stopAnimating()
+//        self.table.reloadData()
+//    }
+//    
+//    // SearchBarの検索ボタンを押した時
+//    func updateSearchResults(for searchController: UISearchController) {
+//        // tabbarを非表示
+//        self.tabBarController?.tabBar.isHidden = true
+//        guard let searchText = searchController.searchBar.text else { return }
+//        // !=でノットイコール
+//        if searchText != "" {
+//            self.reload(query: searchText)
+////            print(searchText)
+//        } else {
+//            // 空欄なら全部表示する
+//            load()
+//        }
+//        
+//        if !searchController.isActive {
+//            // tabbarを表示
+//            self.tabBarController?.tabBar.isHidden = false
+//            print("Cancelled")
+//        }
+//    }
     
     
 }
