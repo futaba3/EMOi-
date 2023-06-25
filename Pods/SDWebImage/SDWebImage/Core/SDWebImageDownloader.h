@@ -78,7 +78,7 @@ typedef NS_OPTIONS(NSUInteger, SDWebImageDownloaderOptions) {
     SDWebImageDownloaderAvoidDecodeImage = 1 << 9,
     
     /**
-     * By default, we decode the animated image. This flag can force decode the first frame only and produece the static image.
+     * By default, we decode the animated image. This flag can force decode the first frame only and produce the static image.
      */
     SDWebImageDownloaderDecodeFirstFrameOnly = 1 << 10,
     
@@ -95,9 +95,13 @@ typedef NS_OPTIONS(NSUInteger, SDWebImageDownloaderOptions) {
     SDWebImageDownloaderMatchAnimatedImageClass = 1 << 12,
 };
 
+/// Posed when URLSessionTask started (`resume` called))
 FOUNDATION_EXPORT NSNotificationName _Nonnull const SDWebImageDownloadStartNotification;
+/// Posed when URLSessionTask get HTTP response (`didReceiveResponse:completionHandler:` called)
 FOUNDATION_EXPORT NSNotificationName _Nonnull const SDWebImageDownloadReceiveResponseNotification;
+/// Posed when URLSessionTask stoped (`didCompleteWithError:` with error or `cancel` called)
 FOUNDATION_EXPORT NSNotificationName _Nonnull const SDWebImageDownloadStopNotification;
+/// Posed when URLSessionTask finished with success  (`didCompleteWithError:` without error)
 FOUNDATION_EXPORT NSNotificationName _Nonnull const SDWebImageDownloadFinishNotification;
 
 typedef SDImageLoaderProgressBlock SDWebImageDownloaderProgressBlock;
@@ -128,6 +132,11 @@ typedef SDImageLoaderCompletedBlock SDWebImageDownloaderCompletedBlock;
  */
 @property (nonatomic, strong, nullable, readonly) NSURLResponse *response;
 
+/**
+ The download's metrics. This will be nil if download operation does not support metrics.
+ */
+@property (nonatomic, strong, nullable, readonly) NSURLSessionTaskMetrics *metrics API_AVAILABLE(macosx(10.12), ios(10.0), watchos(3.0), tvos(10.0));
+
 @end
 
 
@@ -152,7 +161,7 @@ typedef SDImageLoaderCompletedBlock SDWebImageDownloaderCompletedBlock;
 
 /**
  * Set the response modifier to modify the original download response during image load.
- * This request modifier method will be called for each downloading image response. Return the original response means no modification. Return nil will mark current download as cancelled.
+ * This response modifier method will be called for each downloading image response. Return the original response means no modification. Return nil will mark current download as cancelled.
  * Defaults to nil, means does not modify the original download response.
  * @note If you want to modify single response, consider using `SDWebImageContextDownloadResponseModifier` context option.
  */

@@ -23,6 +23,7 @@
 #ifdef GRPC_WINSOCK_SOCKET
 
 #include <winsock2.h>
+
 #include <limits>
 
 #include <grpc/support/alloc.h>
@@ -43,18 +44,18 @@ static gpr_atm g_custom_events = 0;
 
 static HANDLE g_iocp;
 
-static DWORD deadline_to_millis_timeout(grpc_millis deadline) {
-  if (deadline == GRPC_MILLIS_INF_FUTURE) {
+static DWORD deadline_to_millis_timeout(grpc_core::Timestamp deadline) {
+  if (deadline == grpc_core::Timestamp::InfFuture()) {
     return INFINITE;
   }
-  grpc_millis now = grpc_core::ExecCtx::Get()->Now();
+  grpc_core::Timestamp now = grpc_core::Timestamp::Now();
   if (deadline < now) return 0;
-  grpc_millis timeout = deadline - now;
-  if (timeout > std::numeric_limits<DWORD>::max()) return INFINITE;
-  return static_cast<DWORD>(deadline - now);
+  grpc_core::Duration timeout = deadline - now;
+  if (timeout.millis() > std::numeric_limits<DWORD>::max()) return INFINITE;
+  return static_cast<DWORD>(timeout.millis());
 }
 
-grpc_iocp_work_status grpc_iocp_work(grpc_millis deadline) {
+grpc_iocp_work_status grpc_iocp_work(grpc_core::Timestamp deadline) {
   BOOL success;
   DWORD bytes = 0;
   DWORD flags = 0;
@@ -62,7 +63,6 @@ grpc_iocp_work_status grpc_iocp_work(grpc_millis deadline) {
   LPOVERLAPPED overlapped;
   grpc_winsocket* socket;
   grpc_winsocket_callback_info* info;
-  GRPC_STATS_INC_SYSCALL_POLL();
   success =
       GetQueuedCompletionStatus(g_iocp, &bytes, &completion_key, &overlapped,
                                 deadline_to_millis_timeout(deadline));
@@ -90,12 +90,12 @@ grpc_iocp_work_status grpc_iocp_work(grpc_millis deadline) {
     abort();
   }
   if (socket->shutdown_called) {
-    info->bytes_transfered = 0;
+    info->bytes_transferred = 0;
     info->wsa_error = WSA_OPERATION_ABORTED;
   } else {
     success = WSAGetOverlappedResult(socket->socket, &info->overlapped, &bytes,
                                      FALSE, &flags);
-    info->bytes_transfered = bytes;
+    info->bytes_transferred = bytes;
     info->wsa_error = success ? 0 : WSAGetLastError();
   }
   GPR_ASSERT(overlapped == &info->overlapped);
@@ -123,7 +123,7 @@ void grpc_iocp_flush(void) {
   grpc_iocp_work_status work_status;
 
   do {
-    work_status = grpc_iocp_work(GRPC_MILLIS_INF_PAST);
+    work_status = grpc_iocp_work(grpc_core::Timestamp::InfPast());
   } while (work_status == GRPC_IOCP_WORK_KICK ||
            grpc_core::ExecCtx::Get()->Flush());
 }
@@ -131,7 +131,7 @@ void grpc_iocp_flush(void) {
 void grpc_iocp_shutdown(void) {
   grpc_core::ExecCtx exec_ctx;
   while (gpr_atm_acq_load(&g_custom_events)) {
-    grpc_iocp_work(GRPC_MILLIS_INF_FUTURE);
+    grpc_iocp_work(grpc_core::Timestamp::InfFuture());
     grpc_core::ExecCtx::Get()->Flush();
   }
 

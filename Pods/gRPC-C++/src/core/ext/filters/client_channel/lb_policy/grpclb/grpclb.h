@@ -32,5 +32,9 @@
 #define GRPC_ARG_ADDRESS_IS_BACKEND_FROM_GRPCLB_LOAD_BALANCER \
   "grpc.address_is_backend_from_grpclb_load_balancer"
 
+// For use in tests.
+#define GRPC_ARG_GRPCLB_SUBCHANNEL_CACHE_INTERVAL_MS \
+  "grpc.internal.grpclb_subchannel_cache_interval_ms"
+
 #endif /* GRPC_CORE_EXT_FILTERS_CLIENT_CHANNEL_LB_POLICY_GRPCLB_GRPCLB_H \
         */

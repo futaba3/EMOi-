@@ -20,15 +20,21 @@
 
 #include "src/core/lib/gprpp/global_config_env.h"
 
-#include <grpc/support/alloc.h>
+#include <ctype.h>
+#include <stdlib.h>
+
+#include <memory>
+#include <string>
+#include <type_traits>
+
+#include "absl/strings/str_format.h"
+#include "absl/types/optional.h"
+
 #include <grpc/support/log.h>
 #include <grpc/support/string_util.h>
 
-#include "src/core/lib/gpr/env.h"
 #include "src/core/lib/gpr/string.h"
-
-#include <ctype.h>
-#include <string.h>
+#include "src/core/lib/gprpp/env.h"
 
 namespace grpc_core {
 
@@ -42,12 +48,10 @@ GlobalConfigEnvErrorFunctionType g_global_config_env_error_func =
     DefaultGlobalConfigEnvErrorFunction;
 
 void LogParsingError(const char* name, const char* value) {
-  char* error_message;
-  gpr_asprintf(&error_message,
-               "Illegal value '%s' specified for environment variable '%s'",
-               value, name);
-  (*g_global_config_env_error_func)(error_message);
-  gpr_free(error_message);
+  std::string error_message = absl::StrFormat(
+      "Illegal value '%s' specified for environment variable '%s'", value,
+      name);
+  (*g_global_config_env_error_func)(error_message.c_str());
 }
 
 }  // namespace
@@ -57,14 +61,14 @@ void SetGlobalConfigEnvErrorFunction(GlobalConfigEnvErrorFunctionType func) {
 }
 
 UniquePtr<char> GlobalConfigEnv::GetValue() {
-  return UniquePtr<char>(gpr_getenv(GetName()));
+  auto env = GetEnv(GetName());
+  return UniquePtr<char>(env.has_value() ? gpr_strdup(env.value().c_str())
+                                         : nullptr);
 }
 
-void GlobalConfigEnv::SetValue(const char* value) {
-  gpr_setenv(GetName(), value);
-}
+void GlobalConfigEnv::SetValue(const char* value) { SetEnv(GetName(), value); }
 
-void GlobalConfigEnv::Unset() { gpr_unsetenv(GetName()); }
+void GlobalConfigEnv::Unset() { UnsetEnv(GetName()); }
 
 char* GlobalConfigEnv::GetName() {
   // This makes sure that name_ is in a canonical form having uppercase

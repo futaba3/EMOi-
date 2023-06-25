@@ -21,8 +21,6 @@
 
 #include <grpc/support/port_platform.h>
 
-#include <stdint.h>
-
 // --------------------------------------------------------------------
 // How to use global configuration variables:
 //
@@ -59,6 +57,15 @@
 //
 // Declaring config variables for other modules to access:
 //   GPR_GLOBAL_CONFIG_DECLARE_*TYPE*(name)
+//
+// * Caveat for setting global configs at runtime
+//
+// Setting global configs at runtime multiple times is safe but it doesn't
+// mean that it will have a valid effect on the module depending configs.
+// In unit tests, it may be unpredictable to set different global configs
+// between test cases because grpc init and shutdown can ignore changes.
+// It's considered safe to set global configs before the first call to
+// grpc_init().
 
 // --------------------------------------------------------------------
 // How to customize the global configuration system:
@@ -80,8 +87,7 @@
 //   bool gpr_global_config_get_test();
 //   void gpr_global_config_set_test(bool value);
 
-#include "src/core/lib/gprpp/global_config_env.h"
-
-#include "src/core/lib/gprpp/global_config_custom.h"
+#include "src/core/lib/gprpp/global_config_custom.h"  // IWYU pragma: export
+#include "src/core/lib/gprpp/global_config_env.h"     // IWYU pragma: export
 
 #endif /* GRPC_CORE_LIB_GPRPP_GLOBAL_CONFIG_H */

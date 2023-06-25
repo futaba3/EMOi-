@@ -29,9 +29,9 @@
 		85197F8823DC592900B91E5C /* AddRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85197F6E23DC592800B91E5C /* AddRecordViewController.swift */; };
 		85197F8923DC592900B91E5C /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85197F6F23DC592800B91E5C /* SectionHeader.swift */; };
 		85197F8A23DC592900B91E5C /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85197F7023DC592800B91E5C /* RecordTableViewCell.swift */; };
-		85197F8B23DC592900B91E5C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85197F7123DC592800B91E5C /* GoogleService-Info.plist */; };
 		85197F8D23DC592900B91E5C /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85197F7323DC592900B91E5C /* SelectCategoryViewController.swift */; };
 		85197F8F23DC592900B91E5C /* Goods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85197F7523DC592900B91E5C /* Goods.swift */; };
+		85894B4F2A488ED80052A8E5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85894B4E2A488ED80052A8E5 /* GoogleService-Info.plist */; };
 		85D3DDC4252DFFB10037ACA6 /* PlaceHolderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D3DDC3252DFFB10037ACA6 /* PlaceHolderTextView.swift */; };
 		E0F03FF1AB93AFEA391A47FA /* Pods_Goods3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1CB963F57401ED08F0BE56B /* Pods_Goods3.framework */; };
 /* End PBXBuildFile section */
@@ -62,9 +62,9 @@
 		85197F6E23DC592800B91E5C /* AddRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecordViewController.swift; sourceTree = "<group>"; };
 		85197F6F23DC592800B91E5C /* SectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		85197F7023DC592800B91E5C /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
-		85197F7123DC592800B91E5C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		85197F7323DC592900B91E5C /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
 		85197F7523DC592900B91E5C /* Goods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goods.swift; sourceTree = "<group>"; };
+		85894B4E2A488ED80052A8E5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		85D3DDC3252DFFB10037ACA6 /* PlaceHolderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderTextView.swift; sourceTree = "<group>"; };
 		85FA91EE23DDC67F000052B0 /* EMOi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EMOi.entitlements; sourceTree = "<group>"; };
 		C1CB963F57401ED08F0BE56B /* Pods_Goods3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Goods3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,7 +149,7 @@
 				85197F5023DC52DA00B91E5C /* LaunchScreen.storyboard */,
 				85FA91EE23DDC67F000052B0 /* EMOi.entitlements */,
 				85197F5B23DC592600B91E5C /* Goods2.entitlements */,
-				85197F7123DC592800B91E5C /* GoogleService-Info.plist */,
+				85894B4E2A488ED80052A8E5 /* GoogleService-Info.plist */,
 				85197F5323DC52DA00B91E5C /* Info.plist */,
 			);
 			path = Goods3;
@@ -167,7 +167,6 @@
 				85197F3F23DC52D500B91E5C /* Frameworks */,
 				85197F4023DC52D500B91E5C /* Resources */,
 				EAE4ADF6D34DEA9D6EFCC79E /* [CP] Embed Pods Frameworks */,
-				464D17B970EDEFD9CF84CB97 /* [CP] Copy Pods Resources */,
 				853553292613464B00FDCE0A /* ShellScript */,
 			);
 			buildRules = (
@@ -222,30 +221,13 @@
 				85197F7623DC592900B91E5C /* Kano.otf in Resources */,
 				85197F8623DC592900B91E5C /* Main.storyboard in Resources */,
 				85197F8123DC592900B91E5C /* FlopDesignFONT.otf in Resources */,
-				85197F8B23DC592900B91E5C /* GoogleService-Info.plist in Resources */,
+				85894B4F2A488ED80052A8E5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		464D17B970EDEFD9CF84CB97 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Goods3/Pods-Goods3-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Goods3/Pods-Goods3-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Goods3/Pods-Goods3-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		851422C780DA5A6A7A3ADFA4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -396,7 +378,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -450,7 +432,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -470,6 +452,8 @@
 				CURRENT_PROJECT_VERSION = 1.;
 				DEVELOPMENT_TEAM = NWPYC5C8JF;
 				INFOPLIST_FILE = Goods3/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "EMOi+";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -493,6 +477,8 @@
 				CURRENT_PROJECT_VERSION = 1.;
 				DEVELOPMENT_TEAM = NWPYC5C8JF;
 				INFOPLIST_FILE = Goods3/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "EMOi+";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

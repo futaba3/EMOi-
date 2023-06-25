@@ -59,7 +59,7 @@ typedef struct grpc_winsocket_callback_info {
      to hold a mutex for a long amount of time. */
   int has_pending_iocp;
   /* The results of the overlapped operation. */
-  DWORD bytes_transfered;
+  DWORD bytes_transferred;
   int wsa_error;
 } grpc_winsocket_callback_info;
 
@@ -85,8 +85,6 @@ typedef struct grpc_winsocket {
   /* You can't add the same socket twice to the same IO Completion Port.
      This prevents that. */
   int added_to_iocp;
-
-  grpc_closure shutdown_closure;
 
   /* A label for iomgr to track outstanding objects */
   grpc_iomgr_object iomgr_object;

@@ -18,11 +18,13 @@
 
 #include <grpc/support/port_platform.h>
 
-#include "src/core/tsi/ssl/session_cache/ssl_session.h"
-
 #include <grpc/support/log.h>
 
+#include "src/core/tsi/ssl/session_cache/ssl_session.h"
+
 #ifndef OPENSSL_IS_BORINGSSL
+
+#include "absl/memory/memory.h"
 
 // OpenSSL invalidates SSL_SESSION on SSL destruction making it pointless
 // to cache sessions. The workaround is to serialize (relatively expensive)
@@ -65,10 +67,9 @@ class OpenSslCachedSession : public SslCachedSession {
 
 }  // namespace
 
-grpc_core::UniquePtr<SslCachedSession> SslCachedSession::Create(
+std::unique_ptr<SslCachedSession> SslCachedSession::Create(
     SslSessionPtr session) {
-  return grpc_core::UniquePtr<SslCachedSession>(
-      grpc_core::New<OpenSslCachedSession>(std::move(session)));
+  return absl::make_unique<OpenSslCachedSession>(std::move(session));
 }
 
 }  // namespace tsi

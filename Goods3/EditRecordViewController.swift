@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseStorage
+import FirebaseStorageUI
 import FirebaseDatabase
 
 class EditRecordViewController: UIViewController,  UIImagePickerControllerDelegate, UITextFieldDelegate, UINavigationControllerDelegate{

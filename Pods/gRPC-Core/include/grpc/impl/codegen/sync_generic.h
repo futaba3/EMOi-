@@ -18,7 +18,10 @@
 
 #ifndef GRPC_IMPL_CODEGEN_SYNC_GENERIC_H
 #define GRPC_IMPL_CODEGEN_SYNC_GENERIC_H
-/* Generic type defintions for gpr_sync. */
+
+// IWYU pragma: private, include <grpc/support/sync.h>
+
+/* Generic type definitions for gpr_sync. */
 
 #include <grpc/impl/codegen/port_platform.h>
 

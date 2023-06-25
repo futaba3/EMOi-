@@ -18,18 +18,37 @@
 
 #include <grpc/support/port_platform.h>
 
-#include "src/core/tsi/grpc_shadow_boringssl.h"
-
-#include "src/core/tsi/alts/crypt/gsec.h"
-
-#include <openssl_grpc/bio.h>
-#include <openssl_grpc/buffer.h>
-#include <openssl_grpc/err.h>
-#include <openssl_grpc/evp.h>
-#include <openssl_grpc/hmac.h>
 #include <string.h>
 
+#if COCOAPODS==1
+  #include <openssl_grpc/bio.h>
+#else
+  #include <openssl/bio.h>
+#endif
+#if COCOAPODS==1
+  #include <openssl_grpc/buffer.h>
+#else
+  #include <openssl/buffer.h>
+#endif
+#if COCOAPODS==1
+  #include <openssl_grpc/err.h>
+#else
+  #include <openssl/err.h>
+#endif
+#if COCOAPODS==1
+  #include <openssl_grpc/evp.h>
+#else
+  #include <openssl/evp.h>
+#endif
+#if COCOAPODS==1
+  #include <openssl_grpc/hmac.h>
+#else
+  #include <openssl/hmac.h>
+#endif
+
 #include <grpc/support/alloc.h>
+
+#include "src/core/tsi/alts/crypt/gsec.h"
 
 constexpr size_t kKdfKeyLen = 32;
 constexpr size_t kKdfCounterLen = 6;
@@ -560,7 +579,9 @@ static grpc_status_code gsec_aes_gcm_aead_crypter_decrypt_iovec(
   if (!EVP_DecryptFinal_ex(aes_gcm_crypter->ctx, nullptr,
                            &bytes_written_temp)) {
     aes_gcm_format_errors("Checking tag failed.", error_details);
-    memset(plaintext_vec.iov_base, 0x00, plaintext_vec.iov_len);
+    if (plaintext_vec.iov_base != nullptr) {
+      memset(plaintext_vec.iov_base, 0x00, plaintext_vec.iov_len);
+    }
     return GRPC_STATUS_FAILED_PRECONDITION;
   }
   if (bytes_written_temp != 0) {

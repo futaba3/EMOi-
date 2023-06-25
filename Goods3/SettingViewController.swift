@@ -8,7 +8,10 @@
 
 import UIKit
 import FirebaseAuth
-import FirebaseUI
+import FirebaseAuthUI
+import FirebaseGoogleAuthUI
+import FirebaseEmailAuthUI
+import FirebaseOAuthUI
 import FirebaseStorage
 import FirebaseDatabase
 

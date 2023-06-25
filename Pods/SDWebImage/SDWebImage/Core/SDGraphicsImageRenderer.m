@@ -69,6 +69,8 @@
 #endif
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (SDGraphicsImageRendererFormatRange)preferredRange {
 #if SD_UIKIT
     if (@available(iOS 10.0, tvOS 10.10, *)) {
@@ -114,6 +116,7 @@
     _preferredRange = preferredRange;
 #endif
 }
+#pragma clang diagnostic pop
 
 - (instancetype)init {
     self = [super init];
@@ -129,7 +132,13 @@
 #elif SD_UIKIT
             CGFloat screenScale = [UIScreen mainScreen].scale;
 #elif SD_MAC
-            CGFloat screenScale = [NSScreen mainScreen].backingScaleFactor;
+            NSScreen *mainScreen = nil;
+            if (@available(macOS 10.12, *)) {
+                mainScreen = [NSScreen mainScreen];
+            } else {
+                mainScreen = [NSScreen screens].firstObject;
+            }
+            CGFloat screenScale = mainScreen.backingScaleFactor ?: 1.0f;
 #endif
             self.scale = screenScale;
             self.opaque = NO;
@@ -163,7 +172,13 @@
 #elif SD_UIKIT
             CGFloat screenScale = [UIScreen mainScreen].scale;
 #elif SD_MAC
-            CGFloat screenScale = [NSScreen mainScreen].backingScaleFactor;
+            NSScreen *mainScreen = nil;
+            if (@available(macOS 10.12, *)) {
+                mainScreen = [NSScreen mainScreen];
+            } else {
+                mainScreen = [NSScreen screens].firstObject;
+            }
+            CGFloat screenScale = mainScreen.backingScaleFactor ?: 1.0f;
 #endif
             self.scale = screenScale;
             self.opaque = NO;

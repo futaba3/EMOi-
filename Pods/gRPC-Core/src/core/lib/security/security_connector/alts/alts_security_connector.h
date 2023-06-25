@@ -18,11 +18,15 @@
 
 #ifndef GRPC_CORE_LIB_SECURITY_SECURITY_CONNECTOR_ALTS_ALTS_SECURITY_CONNECTOR_H
 #define GRPC_CORE_LIB_SECURITY_SECURITY_CONNECTOR_ALTS_ALTS_SECURITY_CONNECTOR_H
-
 #include <grpc/support/port_platform.h>
 
-#include "src/core/lib/security/context/security_context.h"
-#include "src/core/lib/security/credentials/alts/grpc_alts_credentials_options.h"
+#include <grpc/grpc.h>
+#include <grpc/grpc_security.h>
+
+#include "src/core/lib/gprpp/ref_counted_ptr.h"
+#include "src/core/lib/security/security_connector/security_connector.h"
+#include "src/core/tsi/alts/handshaker/transport_security_common_api.h"
+#include "src/core/tsi/transport_security_interface.h"
 
 #define GRPC_ALTS_TRANSPORT_SECURITY_TYPE "alts"
 
@@ -57,12 +61,16 @@ grpc_core::RefCountedPtr<grpc_server_security_connector>
 grpc_alts_server_security_connector_create(
     grpc_core::RefCountedPtr<grpc_server_credentials> server_creds);
 
+/* Initializes rpc_versions. */
+void grpc_alts_set_rpc_protocol_versions(
+    grpc_gcp_rpc_protocol_versions* rpc_versions);
+
 namespace grpc_core {
 namespace internal {
 
 /* Exposed only for testing. */
-grpc_core::RefCountedPtr<grpc_auth_context>
-grpc_alts_auth_context_from_tsi_peer(const tsi_peer* peer);
+RefCountedPtr<grpc_auth_context> grpc_alts_auth_context_from_tsi_peer(
+    const tsi_peer* peer);
 
 }  // namespace internal
 }  // namespace grpc_core

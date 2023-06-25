@@ -18,6 +18,8 @@
 
 #include <grpc/support/port_platform.h>
 
+#include "src/core/lib/iomgr/timer_manager.h"
+
 #include <inttypes.h>
 
 #include <grpc/support/alloc.h>
@@ -26,7 +28,6 @@
 #include "src/core/lib/debug/trace.h"
 #include "src/core/lib/gprpp/thd.h"
 #include "src/core/lib/iomgr/timer.h"
-#include "src/core/lib/iomgr/timer_manager.h"
 
 struct completed_thread {
   grpc_core::Thread thd;
@@ -55,20 +56,13 @@ static bool g_kicked;
 static bool g_has_timed_waiter;
 // the deadline of the current timed waiter thread (only relevant if
 // g_has_timed_waiter is true)
-static grpc_millis g_timed_waiter_deadline;
+static grpc_core::Timestamp g_timed_waiter_deadline;
 // generation counter to track which thread is waiting for the next timer
 static uint64_t g_timed_waiter_generation;
+// number of timer wakeups
+static uint64_t g_wakeups;
 
 static void timer_thread(void* completed_thread_ptr);
-
-// For debug of the timer manager crash only.
-// TODO (mxyan): remove after bug is fixed.
-#ifdef GRPC_DEBUG_TIMER_MANAGER
-extern int64_t g_timer_manager_init_count;
-extern int64_t g_timer_manager_shutdown_count;
-extern int64_t g_fork_count;
-extern int64_t g_next_value;
-#endif  // GRPC_DEBUG_TIMER_MANAGER
 
 static void gc_completed_threads(void) {
   if (g_completed_threads != nullptr) {
@@ -139,7 +133,7 @@ static void run_some_timers() {
   }
   grpc_core::ExecCtx::Get()->Flush();
   gpr_mu_lock(&g_mu);
-  // garbage collect any threads hanging out that are dead
+  // garbage collect any threads that are dead
   gc_completed_threads();
   // get ready to wait again
   ++g_waiter_count;
@@ -149,7 +143,7 @@ static void run_some_timers() {
 // wait until 'next' (or forever if there is already a timed waiter in the pool)
 // returns true if the thread should continue executing (false if it should
 // shutdown)
-static bool wait_until(grpc_millis next) {
+static bool wait_until(grpc_core::Timestamp next) {
   gpr_mu_lock(&g_mu);
   // if we're not threaded anymore, leave
   if (!g_threaded) {
@@ -183,33 +177,28 @@ static bool wait_until(grpc_millis next) {
        unless their 'next' is earlier than the current timed-waiter's deadline
        (in which case the thread with earlier 'next' takes over as the new timed
        waiter) */
-    if (next != GRPC_MILLIS_INF_FUTURE) {
+    if (next != grpc_core::Timestamp::InfFuture()) {
       if (!g_has_timed_waiter || (next < g_timed_waiter_deadline)) {
         my_timed_waiter_generation = ++g_timed_waiter_generation;
         g_has_timed_waiter = true;
         g_timed_waiter_deadline = next;
 
         if (GRPC_TRACE_FLAG_ENABLED(grpc_timer_check_trace)) {
-          grpc_millis wait_time = next - grpc_core::ExecCtx::Get()->Now();
-          gpr_log(GPR_INFO, "sleep for a %" PRId64 " milliseconds", wait_time);
+          grpc_core::Duration wait_time = next - grpc_core::Timestamp::Now();
+          gpr_log(GPR_INFO, "sleep for a %" PRId64 " milliseconds",
+                  wait_time.millis());
         }
       } else {  // g_timed_waiter == true && next >= g_timed_waiter_deadline
-        next = GRPC_MILLIS_INF_FUTURE;
+        next = grpc_core::Timestamp::InfFuture();
       }
     }
 
     if (GRPC_TRACE_FLAG_ENABLED(grpc_timer_check_trace) &&
-        next == GRPC_MILLIS_INF_FUTURE) {
+        next == grpc_core::Timestamp::InfFuture()) {
       gpr_log(GPR_INFO, "sleep until kicked");
     }
 
-      // For debug of the timer manager crash only.
-      // TODO (mxyan): remove after bug is fixed.
-#ifdef GRPC_DEBUG_TIMER_MANAGER
-    g_next_value = next;
-#endif
-    gpr_cv_wait(&g_cv_wait, &g_mu,
-                grpc_millis_to_timespec(next, GPR_CLOCK_MONOTONIC));
+    gpr_cv_wait(&g_cv_wait, &g_mu, next.as_timespec(GPR_CLOCK_MONOTONIC));
 
     if (GRPC_TRACE_FLAG_ENABLED(grpc_timer_check_trace)) {
       gpr_log(GPR_INFO, "wait ended: was_timed:%d kicked:%d",
@@ -220,8 +209,9 @@ static bool wait_until(grpc_millis next) {
     // that there's now no timed waiter... we'll look for a replacement if
     // there's work to do after checking timers (code above)
     if (my_timed_waiter_generation == g_timed_waiter_generation) {
+      ++g_wakeups;
       g_has_timed_waiter = false;
-      g_timed_waiter_deadline = GRPC_MILLIS_INF_FUTURE;
+      g_timed_waiter_deadline = grpc_core::Timestamp::InfFuture();
     }
   }
 
@@ -238,7 +228,7 @@ static bool wait_until(grpc_millis next) {
 
 static void timer_main_loop() {
   for (;;) {
-    grpc_millis next = GRPC_MILLIS_INF_FUTURE;
+    grpc_core::Timestamp next = grpc_core::Timestamp::InfFuture();
     grpc_core::ExecCtx::Get()->InvalidateNow();
 
     // check timer state, updates next to the next time to run a check
@@ -259,8 +249,8 @@ static void timer_main_loop() {
         if (GRPC_TRACE_FLAG_ENABLED(grpc_timer_check_trace)) {
           gpr_log(GPR_INFO, "timers not checked: expect another thread to");
         }
-        next = GRPC_MILLIS_INF_FUTURE;
-      // fallthrough
+        next = grpc_core::Timestamp::InfFuture();
+        ABSL_FALLTHROUGH_INTENDED;
       case GRPC_TIMERS_CHECKED_AND_EMPTY:
         if (!wait_until(next)) {
           return;
@@ -309,11 +299,6 @@ static void start_threads(void) {
 void grpc_timer_manager_init(void) {
   gpr_mu_init(&g_mu);
   gpr_cv_init(&g_cv_wait);
-#ifdef GRPC_DEBUG_TIMER_MANAGER
-  // For debug of the timer manager crash only.
-  // TODO (mxyan): remove after bug is fixed.
-  g_timer_manager_init_count++;
-#endif
   gpr_cv_init(&g_cv_shutdown);
   g_threaded = false;
   g_thread_count = 0;
@@ -321,7 +306,7 @@ void grpc_timer_manager_init(void) {
   g_completed_threads = nullptr;
 
   g_has_timed_waiter = false;
-  g_timed_waiter_deadline = GRPC_MILLIS_INF_FUTURE;
+  g_timed_waiter_deadline = grpc_core::Timestamp::InfFuture();
 
   start_threads();
 }
@@ -345,15 +330,11 @@ static void stop_threads(void) {
       gc_completed_threads();
     }
   }
+  g_wakeups = 0;
   gpr_mu_unlock(&g_mu);
 }
 
 void grpc_timer_manager_shutdown(void) {
-#ifdef GRPC_DEBUG_TIMER_MANAGER
-  // For debug of the timer manager crash only.
-  // TODO (mxyan): remove after bug is fixed.
-  g_timer_manager_shutdown_count++;
-#endif
   stop_threads();
 
   gpr_mu_destroy(&g_mu);
@@ -361,13 +342,8 @@ void grpc_timer_manager_shutdown(void) {
   gpr_cv_destroy(&g_cv_shutdown);
 }
 
-void grpc_timer_manager_set_threading(bool threaded) {
-#ifdef GRPC_DEBUG_TIMER_MANAGER
-  // For debug of the timer manager crash only.
-  // TODO (mxyan): remove after bug is fixed.
-  g_fork_count++;
-#endif
-  if (threaded) {
+void grpc_timer_manager_set_threading(bool enabled) {
+  if (enabled) {
     start_threads();
   } else {
     stop_threads();
@@ -378,8 +354,10 @@ void grpc_kick_poller(void) {
   gpr_mu_lock(&g_mu);
   g_kicked = true;
   g_has_timed_waiter = false;
-  g_timed_waiter_deadline = GRPC_MILLIS_INF_FUTURE;
+  g_timed_waiter_deadline = grpc_core::Timestamp::InfFuture();
   ++g_timed_waiter_generation;
   gpr_cv_signal(&g_cv_wait);
   gpr_mu_unlock(&g_mu);
 }
+
+uint64_t grpc_timer_manager_get_wakeups_testonly(void) { return g_wakeups; }

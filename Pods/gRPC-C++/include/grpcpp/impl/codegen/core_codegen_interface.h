@@ -19,6 +19,9 @@
 #ifndef GRPCPP_IMPL_CODEGEN_CORE_CODEGEN_INTERFACE_H
 #define GRPCPP_IMPL_CODEGEN_CORE_CODEGEN_INTERFACE_H
 
+// IWYU pragma: private
+
+#include <grpc/impl/codegen/byte_buffer.h>
 #include <grpc/impl/codegen/byte_buffer_reader.h>
 #include <grpc/impl/codegen/grpc_types.h>
 #include <grpc/impl/codegen/sync.h>
@@ -110,9 +113,11 @@ class CoreCodegenInterface {
                                                        grpc_status_code status,
                                                        const char* description,
                                                        void* reserved) = 0;
+  virtual int grpc_call_failed_before_recv_message(const grpc_call* c) = 0;
   virtual void grpc_call_ref(grpc_call* call) = 0;
   virtual void grpc_call_unref(grpc_call* call) = 0;
   virtual void* grpc_call_arena_alloc(grpc_call* call, size_t length) = 0;
+  virtual const char* grpc_call_error_to_string(grpc_call_error error) = 0;
   virtual grpc_slice grpc_empty_slice() = 0;
   virtual grpc_slice grpc_slice_malloc(size_t length) = 0;
   virtual void grpc_slice_unref(grpc_slice slice) = 0;
@@ -122,6 +127,8 @@ class CoreCodegenInterface {
   virtual grpc_slice grpc_slice_sub(grpc_slice s, size_t begin, size_t end) = 0;
   virtual void grpc_slice_buffer_add(grpc_slice_buffer* sb,
                                      grpc_slice slice) = 0;
+  virtual void grpc_slice_buffer_add_indexed(grpc_slice_buffer* sb,
+                                             grpc_slice slice) = 0;
   virtual void grpc_slice_buffer_pop(grpc_slice_buffer* sb) = 0;
   virtual grpc_slice grpc_slice_from_static_buffer(const void* buffer,
                                                    size_t length) = 0;
@@ -143,7 +150,7 @@ extern CoreCodegenInterface* g_core_codegen_interface;
 /// Codegen specific version of \a GPR_ASSERT.
 #define GPR_CODEGEN_ASSERT(x)                                              \
   do {                                                                     \
-    if (!(x)) {                                                            \
+    if (GPR_UNLIKELY(!(x))) {                                              \
       grpc::g_core_codegen_interface->assert_fail(#x, __FILE__, __LINE__); \
     }                                                                      \
   } while (0)

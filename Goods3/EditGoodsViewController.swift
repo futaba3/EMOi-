@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseStorage
+import FirebaseStorageUI
 import FirebaseDatabase
 
 class EditGoodsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,  UITextFieldDelegate {
@@ -53,7 +54,6 @@ class EditGoodsViewController: UIViewController, UIImagePickerControllerDelegate
         categoryLabel.text = good?.category
         let reference = storageRef.child(uid!).child(good!.image)
         goodsImageView.sd_setImage(with: reference)
-        
     
         // stringの日付をDate型に直す
         let formatter = DateFormatter()

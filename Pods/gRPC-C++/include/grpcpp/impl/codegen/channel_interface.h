@@ -19,32 +19,21 @@
 #ifndef GRPCPP_IMPL_CODEGEN_CHANNEL_INTERFACE_H
 #define GRPCPP_IMPL_CODEGEN_CHANNEL_INTERFACE_H
 
+// IWYU pragma: private
+
 #include <grpc/impl/codegen/connectivity_state.h>
-#include <grpcpp/impl/codegen/call.h>
+#include <grpcpp/impl/call.h>
 #include <grpcpp/impl/codegen/status.h>
 #include <grpcpp/impl/codegen/time.h>
 
-namespace grpc_impl {
-class CompletionQueue;
-}
-
 namespace grpc {
-class ChannelInterface;
-class ClientContext;
-
 template <class R>
 class ClientReader;
 template <class W>
 class ClientWriter;
 template <class W, class R>
 class ClientReaderWriter;
-
 namespace internal {
-class Call;
-class CallOpSetInterface;
-class RpcMethod;
-template <class InputMessage, class OutputMessage>
-class BlockingUnaryCallImpl;
 template <class InputMessage, class OutputMessage>
 class CallbackUnaryCallImpl;
 template <class R>
@@ -53,8 +42,7 @@ template <class W>
 class ClientAsyncWriterFactory;
 template <class W, class R>
 class ClientAsyncReaderWriterFactory;
-template <class R>
-class ClientAsyncResponseReaderFactory;
+class ClientAsyncResponseReaderHelper;
 template <class W, class R>
 class ClientCallbackReaderWriterFactory;
 template <class R>
@@ -62,7 +50,23 @@ class ClientCallbackReaderFactory;
 template <class W>
 class ClientCallbackWriterFactory;
 class ClientCallbackUnaryFactory;
+}  // namespace internal
+
+class ChannelInterface;
+class ClientContext;
+class CompletionQueue;
+
+namespace experimental {
+class DelegatingChannel;
+}
+
+namespace internal {
+class Call;
+class CallOpSetInterface;
+class RpcMethod;
 class InterceptedChannel;
+template <class InputMessage, class OutputMessage>
+class BlockingUnaryCallImpl;
 }  // namespace internal
 
 /// Codegen interface for \a grpc::Channel.
@@ -77,7 +81,7 @@ class ChannelInterface {
   /// deadline expires. \a GetState needs to called to get the current state.
   template <typename T>
   void NotifyOnStateChange(grpc_connectivity_state last_observed, T deadline,
-                           ::grpc_impl::CompletionQueue* cq, void* tag) {
+                           grpc::CompletionQueue* cq, void* tag) {
     TimePoint<T> deadline_tp(deadline);
     NotifyOnStateChangeImpl(last_observed, deadline_tp.raw_time(), cq, tag);
   }
@@ -102,41 +106,41 @@ class ChannelInterface {
 
  private:
   template <class R>
-  friend class ::grpc::ClientReader;
+  friend class grpc::ClientReader;
   template <class W>
-  friend class ::grpc::ClientWriter;
+  friend class grpc::ClientWriter;
   template <class W, class R>
-  friend class ::grpc::ClientReaderWriter;
+  friend class grpc::ClientReaderWriter;
   template <class R>
-  friend class ::grpc::internal::ClientAsyncReaderFactory;
+  friend class grpc::internal::ClientAsyncReaderFactory;
   template <class W>
-  friend class ::grpc::internal::ClientAsyncWriterFactory;
+  friend class grpc::internal::ClientAsyncWriterFactory;
   template <class W, class R>
-  friend class ::grpc::internal::ClientAsyncReaderWriterFactory;
-  template <class R>
-  friend class ::grpc::internal::ClientAsyncResponseReaderFactory;
+  friend class grpc::internal::ClientAsyncReaderWriterFactory;
+  friend class grpc::internal::ClientAsyncResponseReaderHelper;
   template <class W, class R>
-  friend class ::grpc::internal::ClientCallbackReaderWriterFactory;
+  friend class grpc::internal::ClientCallbackReaderWriterFactory;
   template <class R>
-  friend class ::grpc::internal::ClientCallbackReaderFactory;
+  friend class grpc::internal::ClientCallbackReaderFactory;
   template <class W>
-  friend class ::grpc::internal::ClientCallbackWriterFactory;
-  friend class ::grpc::internal::ClientCallbackUnaryFactory;
+  friend class grpc::internal::ClientCallbackWriterFactory;
+  friend class grpc::internal::ClientCallbackUnaryFactory;
   template <class InputMessage, class OutputMessage>
-  friend class ::grpc::internal::BlockingUnaryCallImpl;
+  friend class grpc::internal::BlockingUnaryCallImpl;
   template <class InputMessage, class OutputMessage>
-  friend class ::grpc::internal::CallbackUnaryCallImpl;
-  friend class ::grpc::internal::RpcMethod;
-  friend class ::grpc::internal::InterceptedChannel;
+  friend class grpc::internal::CallbackUnaryCallImpl;
+  friend class grpc::internal::RpcMethod;
+  friend class grpc::experimental::DelegatingChannel;
+  friend class grpc::internal::InterceptedChannel;
   virtual internal::Call CreateCall(const internal::RpcMethod& method,
-                                    ClientContext* context,
-                                    ::grpc_impl::CompletionQueue* cq) = 0;
+                                    grpc::ClientContext* context,
+                                    grpc::CompletionQueue* cq) = 0;
   virtual void PerformOpsOnCall(internal::CallOpSetInterface* ops,
                                 internal::Call* call) = 0;
   virtual void* RegisterMethod(const char* method) = 0;
   virtual void NotifyOnStateChangeImpl(grpc_connectivity_state last_observed,
                                        gpr_timespec deadline,
-                                       ::grpc_impl::CompletionQueue* cq,
+                                       grpc::CompletionQueue* cq,
                                        void* tag) = 0;
   virtual bool WaitForStateChangeImpl(grpc_connectivity_state last_observed,
                                       gpr_timespec deadline) = 0;
@@ -148,14 +152,12 @@ class ChannelInterface {
   // Returns an empty Call object (rather than being pure) since this is a new
   // method and adding a new pure method to an interface would be a breaking
   // change (even though this is private and non-API)
-  virtual internal::Call CreateCallInternal(const internal::RpcMethod& method,
-                                            ClientContext* context,
-                                            ::grpc_impl::CompletionQueue* cq,
-                                            size_t interceptor_pos) {
+  virtual internal::Call CreateCallInternal(
+      const internal::RpcMethod& /*method*/, grpc::ClientContext* /*context*/,
+      grpc::CompletionQueue* /*cq*/, size_t /*interceptor_pos*/) {
     return internal::Call();
   }
 
-  // EXPERIMENTAL
   // A method to get the callbackable completion queue associated with this
   // channel. If the return value is nullptr, this channel doesn't support
   // callback operations.
@@ -163,7 +165,7 @@ class ChannelInterface {
   // Returns nullptr (rather than being pure) since this is a post-1.0 method
   // and adding a new pure method to an interface would be a breaking change
   // (even though this is private and non-API)
-  virtual ::grpc_impl::CompletionQueue* CallbackCQ() { return nullptr; }
+  virtual grpc::CompletionQueue* CallbackCQ() { return nullptr; }
 };
 }  // namespace grpc
 

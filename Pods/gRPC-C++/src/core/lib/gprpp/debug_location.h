@@ -19,33 +19,68 @@
 #ifndef GRPC_CORE_LIB_GPRPP_DEBUG_LOCATION_H
 #define GRPC_CORE_LIB_GPRPP_DEBUG_LOCATION_H
 
+#if defined(__has_builtin)
+#if __has_builtin(__builtin_FILE)
+#define GRPC_DEFAULT_FILE __builtin_FILE()
+#endif
+#endif
+#ifndef GRPC_DEFAULT_FILE
+#define GRPC_DEFAULT_FILE "<unknown>"
+#endif
+#if defined(__has_builtin)
+#if __has_builtin(__builtin_LINE)
+#define GRPC_DEFAULT_LINE __builtin_LINE()
+#endif
+#endif
+#ifndef GRPC_DEFAULT_LINE
+#define GRPC_DEFAULT_LINE -1
+#endif
+
 namespace grpc_core {
 
-// Used for tracking file and line where a call is made for debug builds.
-// No-op for non-debug builds.
-// Callers can use the DEBUG_LOCATION macro in either case.
-#ifndef NDEBUG
-class DebugLocation {
+class SourceLocation {
  public:
-  DebugLocation(const char* file, int line) : file_(file), line_(line) {}
-  bool Log() const { return true; }
+  // NOLINTNEXTLINE
+  SourceLocation(const char* file = GRPC_DEFAULT_FILE,
+                 int line = GRPC_DEFAULT_LINE)
+      : file_(file), line_(line) {}
   const char* file() const { return file_; }
   int line() const { return line_; }
 
  private:
   const char* file_;
-  const int line_;
+  int line_;
 };
-#define DEBUG_LOCATION ::grpc_core::DebugLocation(__FILE__, __LINE__)
+
+// Used for tracking file and line where a call is made for debug builds.
+// No-op for non-debug builds.
+// Callers can use the DEBUG_LOCATION macro in either case.
+#ifndef NDEBUG
+// TODO(roth): See if there's a way to automatically populate this,
+// similarly to how absl::SourceLocation::current() works, so that
+// callers don't need to explicitly pass DEBUG_LOCATION anywhere.
+class DebugLocation {
+ public:
+  DebugLocation(const char* file = GRPC_DEFAULT_FILE,
+                int line = GRPC_DEFAULT_LINE)
+      : location_(file, line) {}
+  const char* file() const { return location_.file(); }
+  int line() const { return location_.line(); }
+
+ private:
+  SourceLocation location_;
+};
 #else
 class DebugLocation {
  public:
-  bool Log() const { return false; }
+  DebugLocation() {}
+  DebugLocation(const char* /* file */, int /* line */) {}
   const char* file() const { return nullptr; }
   int line() const { return -1; }
 };
-#define DEBUG_LOCATION ::grpc_core::DebugLocation()
 #endif
+
+#define DEBUG_LOCATION ::grpc_core::DebugLocation(__FILE__, __LINE__)
 
 }  // namespace grpc_core
 

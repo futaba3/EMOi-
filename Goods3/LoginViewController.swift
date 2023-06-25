@@ -9,38 +9,33 @@
 import UIKit
 import AuthenticationServices
 import CryptoKit
-import FirebaseUI
+import FirebaseAuthUI
+import FirebaseGoogleAuthUI
+import FirebaseEmailAuthUI
+import FirebaseOAuthUI
 
 class LoginViewController: UIViewController, FUIAuthDelegate {
     
     @IBOutlet var AuthButton: UIButton!
-
     
     var authUI: FUIAuth { get { return FUIAuth.defaultAuthUI()!}}
-    // 認証に使用するプロバイダの選択
-    var providers: [FUIAuthProvider] = []
     
     let actionCodeSettings = ActionCodeSettings()
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        providers.append(FUIGoogleAuth())
-        providers.append(FUIEmailAuth())
-        // twitterに対応したら追加する
+        // 認証に使用するプロバイダの選択
+        let googleAuthProvider = FUIGoogleAuth(authUI: authUI)
+        let providers: [FUIAuthProvider] = [
+            googleAuthProvider,
+            FUIEmailAuth(),
+            FUIOAuth.appleAuthProvider()
+        ]
         
-        
-        if #available(iOS 13, *) {
-           providers.append(FUIOAuth.appleAuthProvider())
-        }
-
-
         self.authUI.delegate = self
         self.authUI.providers = providers
         AuthButton.addTarget(self,action: #selector(self.AuthButtonTapped(sender:)),for: .touchUpInside)
         
-
-
         // Do any additional setup after loading the view.
     }
     

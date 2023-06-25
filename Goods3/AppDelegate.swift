@@ -9,7 +9,10 @@
 import UIKit
 import Firebase
 import FirebaseAuth
-import FirebaseUI
+import FirebaseAuthUI
+import FirebaseGoogleAuthUI
+import FirebaseEmailAuthUI
+import FirebaseOAuthUI
 
 import AuthenticationServices
 
@@ -36,9 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             // ログインしてない
         }
-        
-//        // twitter認証 "apiキー","apiシークレット"
-//        TWTRTwitter.sharedInstance().start(withConsumerKey: "flUEWydRtnAW5voQrAP51eGE2", consumerSecret: "1woejLRaJQhCsC2tKDtCLCEhmf3vQ5maAujpzuZERo5Hqoh2DH")
 
         return true
     }
@@ -58,14 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return false
     }
     
-//    // Twitter認証
-//    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-//
-//        return true
-//    }
-    
-
-
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
