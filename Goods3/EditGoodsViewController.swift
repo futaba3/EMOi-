@@ -30,7 +30,6 @@ class EditGoodsViewController: UIViewController, UIImagePickerControllerDelegate
     // 画像を保存するための元となる画像
     var goodsImage: UIImage!
     
-    
     var ref: DatabaseReference!
     var storageRef: StorageReference!
     
