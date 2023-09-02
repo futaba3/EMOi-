@@ -36,6 +36,7 @@ class RecordViewController: UIViewController, UITableViewDataSource, UITableView
         
         table.dataSource = self
         table.delegate = self
+        table.sectionHeaderTopPadding = 0.01
         
         ref = Database.database().reference()
         storageRef = Storage.storage().reference()
