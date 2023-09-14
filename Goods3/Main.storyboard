@@ -17,7 +17,7 @@
         <!--Add Goods-->
         <scene sceneID="FaV-aa-efc">
             <objects>
-                <viewController id="NVd-Vi-swI" customClass="AddGoodsViewController" customModule="EMOi" sceneMemberID="viewController">
+                <viewController id="NVd-Vi-swI" customClass="AddGoodsViewController" customModule="EMOi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7bv-nn-PRI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -349,7 +349,7 @@
         <!--Add Records-->
         <scene sceneID="Az8-iS-YKF">
             <objects>
-                <viewController id="d6Q-sU-D8v" customClass="AddRecordViewController" customModule="EMOi" sceneMemberID="viewController">
+                <viewController id="d6Q-sU-D8v" customClass="AddRecordViewController" customModule="EMOi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zol-gM-EeZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -675,7 +675,7 @@
         <!--Comment Text View Controller-->
         <scene sceneID="jGg-LA-ZO9">
             <objects>
-                <viewController id="cNu-1K-S3d" customClass="CommentTextViewController" customModule="EMOi" sceneMemberID="viewController">
+                <viewController id="cNu-1K-S3d" customClass="CommentTextViewController" customModule="EMOi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YWb-fP-OMM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -745,7 +745,7 @@
         <!--EDIT GOODS-->
         <scene sceneID="8aG-3B-C3x">
             <objects>
-                <viewController id="RSM-dZ-nrf" customClass="EditGoodsViewController" customModule="EMOi" sceneMemberID="viewController">
+                <viewController id="RSM-dZ-nrf" customClass="EditGoodsViewController" customModule="EMOi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jta-lK-ugy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -911,7 +911,7 @@
         <!--GOODS-->
         <scene sceneID="JIM-58-oh7">
             <objects>
-                <viewController storyboardIdentifier="Goods" id="M90-GW-7hk" customClass="GoodsViewController" customModule="EMOi" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Goods" id="M90-GW-7hk" customClass="GoodsViewController" customModule="EMOi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="d3t-aL-Qd4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1146,7 +1146,7 @@ Email &amp; Password</string>
         <!--Select Category View Controller-->
         <scene sceneID="5Rn-Xk-2xu">
             <objects>
-                <viewController id="0vu-8B-czB" customClass="SelectCategoryViewController" customModule="EMOi" sceneMemberID="viewController">
+                <viewController id="0vu-8B-czB" customClass="SelectCategoryViewController" customModule="EMOi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="65T-Jb-k6Y">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1689,8 +1689,8 @@ Email &amp; Password</string>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="vga-LE-7bp"/>
-        <segue reference="GGm-za-Xs0"/>
-        <segue reference="O9r-mU-iBZ"/>
+        <segue reference="Dem-v5-kfw"/>
+        <segue reference="dvR-gD-n65"/>
         <segue reference="2TF-LK-Shk"/>
         <segue reference="3fA-s1-1AK"/>
     </inferredMetricsTieBreakers>

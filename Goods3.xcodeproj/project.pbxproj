@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -31,9 +31,19 @@
 		85197F8A23DC592900B91E5C /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85197F7023DC592800B91E5C /* RecordTableViewCell.swift */; };
 		85197F8D23DC592900B91E5C /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85197F7323DC592900B91E5C /* SelectCategoryViewController.swift */; };
 		85197F8F23DC592900B91E5C /* Goods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85197F7523DC592900B91E5C /* Goods.swift */; };
-		858EF6D22AA36F94000ED498 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 858EF6D12AA36F93000ED498 /* GoogleService-Info.plist */; };
+		854047212AAEAA4B00C962F8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 854047202AAEAA4B00C962F8 /* FirebaseAnalytics */; };
+		854047232AAEAA4B00C962F8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 854047222AAEAA4B00C962F8 /* FirebaseAuth */; };
+		854047252AAEAA4B00C962F8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 854047242AAEAA4B00C962F8 /* FirebaseCrashlytics */; };
+		854047272AAEAA4B00C962F8 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 854047262AAEAA4B00C962F8 /* FirebaseDatabase */; };
+		854047292AAEAA4B00C962F8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 854047282AAEAA4B00C962F8 /* FirebaseStorage */; };
+		8540472C2AAEAAFF00C962F8 /* FirebaseAuthUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8540472B2AAEAAFF00C962F8 /* FirebaseAuthUI */; };
+		8540472E2AAEAAFF00C962F8 /* FirebaseDatabaseUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8540472D2AAEAAFF00C962F8 /* FirebaseDatabaseUI */; };
+		854047302AAEAAFF00C962F8 /* FirebaseEmailAuthUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8540472F2AAEAAFF00C962F8 /* FirebaseEmailAuthUI */; };
+		854047322AAEAAFF00C962F8 /* FirebaseGoogleAuthUI in Frameworks */ = {isa = PBXBuildFile; productRef = 854047312AAEAAFF00C962F8 /* FirebaseGoogleAuthUI */; };
+		854047342AAEAAFF00C962F8 /* FirebaseOAuthUI in Frameworks */ = {isa = PBXBuildFile; productRef = 854047332AAEAAFF00C962F8 /* FirebaseOAuthUI */; };
+		854047362AAEAAFF00C962F8 /* FirebaseStorageUI in Frameworks */ = {isa = PBXBuildFile; productRef = 854047352AAEAAFF00C962F8 /* FirebaseStorageUI */; };
+		8541AB242AAED3590036A56A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8541AB232AAED3590036A56A /* GoogleService-Info.plist */; };
 		85D3DDC4252DFFB10037ACA6 /* PlaceHolderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D3DDC3252DFFB10037ACA6 /* PlaceHolderTextView.swift */; };
-		E0F03FF1AB93AFEA391A47FA /* Pods_Goods3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1CB963F57401ED08F0BE56B /* Pods_Goods3.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,12 +74,9 @@
 		85197F7023DC592800B91E5C /* RecordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		85197F7323DC592900B91E5C /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
 		85197F7523DC592900B91E5C /* Goods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goods.swift; sourceTree = "<group>"; };
-		858EF6D12AA36F93000ED498 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8541AB232AAED3590036A56A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		85D3DDC3252DFFB10037ACA6 /* PlaceHolderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderTextView.swift; sourceTree = "<group>"; };
 		85FA91EE23DDC67F000052B0 /* EMOi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EMOi.entitlements; sourceTree = "<group>"; };
-		C1CB963F57401ED08F0BE56B /* Pods_Goods3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Goods3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DFAEEA469FE9762BC011F25B /* Pods-Goods3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Goods3.debug.xcconfig"; path = "Target Support Files/Pods-Goods3/Pods-Goods3.debug.xcconfig"; sourceTree = "<group>"; };
-		FAC06EC3250D869637B3B6A5 /* Pods-Goods3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Goods3.release.xcconfig"; path = "Target Support Files/Pods-Goods3/Pods-Goods3.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,37 +84,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0F03FF1AB93AFEA391A47FA /* Pods_Goods3.framework in Frameworks */,
+				8540472E2AAEAAFF00C962F8 /* FirebaseDatabaseUI in Frameworks */,
+				854047362AAEAAFF00C962F8 /* FirebaseStorageUI in Frameworks */,
+				854047252AAEAA4B00C962F8 /* FirebaseCrashlytics in Frameworks */,
+				854047322AAEAAFF00C962F8 /* FirebaseGoogleAuthUI in Frameworks */,
+				8540472C2AAEAAFF00C962F8 /* FirebaseAuthUI in Frameworks */,
+				854047212AAEAA4B00C962F8 /* FirebaseAnalytics in Frameworks */,
+				854047302AAEAAFF00C962F8 /* FirebaseEmailAuthUI in Frameworks */,
+				854047272AAEAA4B00C962F8 /* FirebaseDatabase in Frameworks */,
+				854047342AAEAAFF00C962F8 /* FirebaseOAuthUI in Frameworks */,
+				854047292AAEAA4B00C962F8 /* FirebaseStorage in Frameworks */,
+				854047232AAEAA4B00C962F8 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		205900CC07AC01E2DB8E7E57 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C1CB963F57401ED08F0BE56B /* Pods_Goods3.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2180C9CA8E98776CB2914968 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				DFAEEA469FE9762BC011F25B /* Pods-Goods3.debug.xcconfig */,
-				FAC06EC3250D869637B3B6A5 /* Pods-Goods3.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		85197F3923DC52D500B91E5C = {
 			isa = PBXGroup;
 			children = (
 				85197F4423DC52D500B91E5C /* Goods3 */,
 				85197F4323DC52D500B91E5C /* Products */,
-				2180C9CA8E98776CB2914968 /* Pods */,
-				205900CC07AC01E2DB8E7E57 /* Frameworks */,
+				8541AB202AAEC6170036A56A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -149,10 +148,17 @@
 				85197F5023DC52DA00B91E5C /* LaunchScreen.storyboard */,
 				85FA91EE23DDC67F000052B0 /* EMOi.entitlements */,
 				85197F5B23DC592600B91E5C /* Goods2.entitlements */,
-				858EF6D12AA36F93000ED498 /* GoogleService-Info.plist */,
+				8541AB232AAED3590036A56A /* GoogleService-Info.plist */,
 				85197F5323DC52DA00B91E5C /* Info.plist */,
 			);
 			path = Goods3;
+			sourceTree = "<group>";
+		};
+		8541AB202AAEC6170036A56A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,11 +168,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 85197F5623DC52DA00B91E5C /* Build configuration list for PBXNativeTarget "Goods3" */;
 			buildPhases = (
-				851422C780DA5A6A7A3ADFA4 /* [CP] Check Pods Manifest.lock */,
 				85197F3E23DC52D500B91E5C /* Sources */,
 				85197F3F23DC52D500B91E5C /* Frameworks */,
 				85197F4023DC52D500B91E5C /* Resources */,
-				EAE4ADF6D34DEA9D6EFCC79E /* [CP] Embed Pods Frameworks */,
 				853553292613464B00FDCE0A /* ShellScript */,
 			);
 			buildRules = (
@@ -174,6 +178,19 @@
 			dependencies = (
 			);
 			name = Goods3;
+			packageProductDependencies = (
+				854047202AAEAA4B00C962F8 /* FirebaseAnalytics */,
+				854047222AAEAA4B00C962F8 /* FirebaseAuth */,
+				854047242AAEAA4B00C962F8 /* FirebaseCrashlytics */,
+				854047262AAEAA4B00C962F8 /* FirebaseDatabase */,
+				854047282AAEAA4B00C962F8 /* FirebaseStorage */,
+				8540472B2AAEAAFF00C962F8 /* FirebaseAuthUI */,
+				8540472D2AAEAAFF00C962F8 /* FirebaseDatabaseUI */,
+				8540472F2AAEAAFF00C962F8 /* FirebaseEmailAuthUI */,
+				854047312AAEAAFF00C962F8 /* FirebaseGoogleAuthUI */,
+				854047332AAEAAFF00C962F8 /* FirebaseOAuthUI */,
+				854047352AAEAAFF00C962F8 /* FirebaseStorageUI */,
+			);
 			productName = Goods3;
 			productReference = 85197F4223DC52D500B91E5C /* EMOi.app */;
 			productType = "com.apple.product-type.application";
@@ -184,8 +201,9 @@
 		85197F3A23DC52D500B91E5C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = "Kudo Ayana";
 				TargetAttributes = {
 					85197F4123DC52D500B91E5C = {
@@ -202,6 +220,10 @@
 				Base,
 			);
 			mainGroup = 85197F3923DC52D500B91E5C;
+			packageReferences = (
+				8540471F2AAEAA4B00C962F8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				8540472A2AAEAAFF00C962F8 /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */,
+			);
 			productRefGroup = 85197F4323DC52D500B91E5C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -221,35 +243,13 @@
 				85197F7623DC592900B91E5C /* Kano.otf in Resources */,
 				85197F8623DC592900B91E5C /* Main.storyboard in Resources */,
 				85197F8123DC592900B91E5C /* FlopDesignFONT.otf in Resources */,
-				858EF6D22AA36F94000ED498 /* GoogleService-Info.plist in Resources */,
+				8541AB242AAED3590036A56A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		851422C780DA5A6A7A3ADFA4 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Goods3-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		853553292613464B00FDCE0A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -258,6 +258,8 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
 			outputFileListPaths = (
 			);
@@ -265,24 +267,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${PODS_ROOT}/FirebaseCrashlytics/run\n";
-		};
-		EAE4ADF6D34DEA9D6EFCC79E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Goods3/Pods-Goods3-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Goods3/Pods-Goods3-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Goods3/Pods-Goods3-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "# Type a script or drag a script file from your \n${BUILD_DIR%Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -354,6 +339,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -415,6 +401,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -446,7 +433,6 @@
 		};
 		85197F5723DC52DA00B91E5C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFAEEA469FE9762BC011F25B /* Pods-Goods3.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Goods3/EMOi.entitlements;
@@ -462,6 +448,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1.1;
+				"OTHER_SWIFT_FLAGS[sdk=*]" = "-Xcc -fmodule-map-file=$(GENERATED_MODULEMAP_DIR)/FirebaseStorage.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kudoayana.Goods2;
 				PRODUCT_NAME = EMOi;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -474,7 +461,6 @@
 		};
 		85197F5823DC52DA00B91E5C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FAC06EC3250D869637B3B6A5 /* Pods-Goods3.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Goods3/EMOi.entitlements;
@@ -490,6 +476,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1.1;
+				"OTHER_SWIFT_FLAGS[arch=*]" = "-Xcc -fmodule-map-file=$(GENERATED_MODULEMAP_DIR)/FirebaseStorage.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kudoayana.Goods2;
 				PRODUCT_NAME = EMOi;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -522,6 +509,83 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8540471F2AAEAA4B00C962F8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+		8540472A2AAEAAFF00C962F8 /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/FirebaseUI-iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		854047202AAEAA4B00C962F8 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8540471F2AAEAA4B00C962F8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		854047222AAEAA4B00C962F8 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8540471F2AAEAA4B00C962F8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		854047242AAEAA4B00C962F8 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8540471F2AAEAA4B00C962F8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		854047262AAEAA4B00C962F8 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8540471F2AAEAA4B00C962F8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		854047282AAEAA4B00C962F8 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8540471F2AAEAA4B00C962F8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		8540472B2AAEAAFF00C962F8 /* FirebaseAuthUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8540472A2AAEAAFF00C962F8 /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */;
+			productName = FirebaseAuthUI;
+		};
+		8540472D2AAEAAFF00C962F8 /* FirebaseDatabaseUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8540472A2AAEAAFF00C962F8 /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */;
+			productName = FirebaseDatabaseUI;
+		};
+		8540472F2AAEAAFF00C962F8 /* FirebaseEmailAuthUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8540472A2AAEAAFF00C962F8 /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */;
+			productName = FirebaseEmailAuthUI;
+		};
+		854047312AAEAAFF00C962F8 /* FirebaseGoogleAuthUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8540472A2AAEAAFF00C962F8 /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */;
+			productName = FirebaseGoogleAuthUI;
+		};
+		854047332AAEAAFF00C962F8 /* FirebaseOAuthUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8540472A2AAEAAFF00C962F8 /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */;
+			productName = FirebaseOAuthUI;
+		};
+		854047352AAEAAFF00C962F8 /* FirebaseStorageUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8540472A2AAEAAFF00C962F8 /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */;
+			productName = FirebaseStorageUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 85197F3A23DC52D500B91E5C /* Project object */;
 }
