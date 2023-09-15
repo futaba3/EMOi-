@@ -21,7 +21,6 @@ class EditRecordViewController: UIViewController,  UIImagePickerControllerDelega
     @IBOutlet var resultTextField: UITextField!
     @IBOutlet var placeTextField: UITextField!
     @IBOutlet var categoryLabel: UILabel!
-    @IBOutlet var emotionLabel: UILabel!
     @IBOutlet var commentTextView: UITextView!
     
     @IBOutlet var selectedEmotion1Button: UIButton!
@@ -29,6 +28,10 @@ class EditRecordViewController: UIViewController,  UIImagePickerControllerDelega
     @IBOutlet var selectedEmotion3Button: UIButton!
     @IBOutlet var selectedEmotion4Button: UIButton!
     @IBOutlet var selectedEmotion5Button: UIButton!
+    
+    // firebaseにStringで保存しているのでIntに直すのが難しいため一旦Stringの変数を用意
+    var emotionNumberString = ""
+    
     // ボタンに割り振られたタグの定義
     enum actionTag: Int {
         case action1 = 1
@@ -71,7 +74,7 @@ class EditRecordViewController: UIViewController,  UIImagePickerControllerDelega
         placeTextField.text = record?.place
         commentTextView.text = record?.comment
         categoryLabel.text = record?.category
-        emotionLabel.text = record?.emotion
+        emotionNumberString = record?.emotion ?? ""
         let reference = storageRef.child(uid!).child(record?.image ?? "")
         recordsImageView.sd_setImage(with: reference)
         
@@ -162,19 +165,19 @@ class EditRecordViewController: UIViewController,  UIImagePickerControllerDelega
         
         // emotionの番号に合わせてデフォルトで選択状態にする
         if record?.emotion == "1" {
-            emotionLabel.text = "1"
+            emotionNumberString = "1"
             selectedEmotion1Button.backgroundColor = UIColor.init(red: 255/255, green: 105/255, blue: 180/255, alpha: 100/100)
         } else if record?.emotion == "2" {
-            emotionLabel.text = "2"
+            emotionNumberString = "2"
             selectedEmotion2Button.backgroundColor = UIColor.init(red: 255/255, green: 140/255, blue: 0/255, alpha: 100/100)
         } else if record?.emotion == "3" {
-            emotionLabel.text = "3"
+            emotionNumberString = "3"
             selectedEmotion3Button.backgroundColor = UIColor.init(red: 255/255, green: 250/255, blue: 50/255, alpha: 100/100)
         } else if record?.emotion == "4" {
-            emotionLabel.text = "4"
+            emotionNumberString = "4"
             selectedEmotion4Button.backgroundColor = UIColor.init(red: 176/255, green: 236/255, blue: 205/255, alpha: 100/100)
         } else if record?.emotion == "5" {
-            emotionLabel.text = "5"
+            emotionNumberString = "5"
             selectedEmotion5Button.backgroundColor = UIColor.init(red: 65/255, green: 105/255, blue: 225/255, alpha: 100/100)
         }
             
@@ -277,14 +280,13 @@ class EditRecordViewController: UIViewController,  UIImagePickerControllerDelega
                 // 目ハート（ピンク）
                 case .action1:
                     // 1以外が選択されている場合
-                    if emotionLabel.text != "1" {
-                        emotionLabel.text = "1"
+                    if emotionNumberString != "1" {
+                        emotionNumberString = "1"
                         button.backgroundColor = UIColor.init(red: 255/255, green: 105/255, blue: 180/255, alpha: 100/100)
                     } else {
-                        emotionLabel.text = ""
+                        emotionNumberString = ""
                         button.backgroundColor = UIColor.white
                     }
-                    print(emotionLabel.text!)
                     // その他のボタンの背景色を白にする
                     self.selectedEmotion2Button.backgroundColor = UIColor.white
                     self.selectedEmotion3Button.backgroundColor = UIColor.white
@@ -293,14 +295,13 @@ class EditRecordViewController: UIViewController,  UIImagePickerControllerDelega
 
                 // 笑顔（オレンジ）
                 case .action2:
-                    if emotionLabel.text != "2" {
-                        emotionLabel.text = "2"
+                    if emotionNumberString != "2" {
+                        emotionNumberString = "2"
                         button.backgroundColor = UIColor.init(red: 255/255, green: 140/255, blue: 0/255, alpha: 100/100)
                     } else {
-                        emotionLabel.text = ""
+                        emotionNumberString = ""
                         button.backgroundColor = UIColor.white
                     }
-                    print(emotionLabel.text!)
                     self.selectedEmotion1Button.backgroundColor = UIColor.white
                     self.selectedEmotion3Button.backgroundColor = UIColor.white
                     self.selectedEmotion4Button.backgroundColor = UIColor.white
@@ -308,14 +309,13 @@ class EditRecordViewController: UIViewController,  UIImagePickerControllerDelega
 
                 // 驚き（黄色）
                 case .action3:
-                    if emotionLabel.text != "3" {
-                        emotionLabel.text = "3"
+                    if emotionNumberString != "3" {
+                        emotionNumberString = "3"
                         button.backgroundColor = UIColor.init(red: 255/255, green: 250/255, blue: 50/255, alpha: 100/100)
                     } else {
-                        emotionLabel.text = ""
+                        emotionNumberString = ""
                         button.backgroundColor = UIColor.white
                     }
-                    print(emotionLabel.text!)
                     self.selectedEmotion1Button.backgroundColor = UIColor.white
                     self.selectedEmotion2Button.backgroundColor = UIColor.white
                     self.selectedEmotion4Button.backgroundColor = UIColor.white
@@ -323,14 +323,13 @@ class EditRecordViewController: UIViewController,  UIImagePickerControllerDelega
 
                 // 真顔（緑）
                 case .action4:
-                    if emotionLabel.text != "4" {
-                        emotionLabel.text = "4"
+                    if emotionNumberString != "4" {
+                        emotionNumberString = "4"
                         button.backgroundColor = UIColor.init(red: 176/255, green: 236/255, blue: 205/255, alpha: 100/100)
                     } else {
-                        emotionLabel.text = ""
+                        emotionNumberString = ""
                         button.backgroundColor = UIColor.white
                     }
-                    print(emotionLabel.text!)
                     self.selectedEmotion1Button.backgroundColor = UIColor.white
                     self.selectedEmotion2Button.backgroundColor = UIColor.white
                     self.selectedEmotion3Button.backgroundColor = UIColor.white
@@ -338,14 +337,13 @@ class EditRecordViewController: UIViewController,  UIImagePickerControllerDelega
                     
                 // がっかり（青）
                 case .action5:
-                    if emotionLabel.text != "5" {
-                        emotionLabel.text = "5"
+                    if emotionNumberString != "5" {
+                        emotionNumberString = "5"
                         button.backgroundColor = UIColor.init(red: 65/255, green: 105/255, blue: 225/255, alpha: 100/100)
                     } else {
-                        emotionLabel.text = ""
+                        emotionNumberString = ""
                         button.backgroundColor = UIColor.white
                     }
-                    print(emotionLabel.text!)
                     self.selectedEmotion1Button.backgroundColor = UIColor.white
                     self.selectedEmotion2Button.backgroundColor = UIColor.white
                     self.selectedEmotion3Button.backgroundColor = UIColor.white
@@ -363,64 +361,30 @@ class EditRecordViewController: UIViewController,  UIImagePickerControllerDelega
     
     // 保存するメソッド
     @IBAction func saveRecords(){
-        // なまえ入力されてないアラート
-        if titleTextField.text == ""{
-            let alert: UIAlertController = UIAlertController(title: "Stop!", message: "Titleを入力してください！", preferredStyle: .alert)
-            alert.addAction(
-                UIAlertAction(
-                    title: "cancel",
-                    style: .cancel,
-                    handler: nil
-                )
-            )
-            present(alert, animated: true, completion: nil)
-        } else if categoryLabel.text == "Select Category"{
-            let alert: UIAlertController = UIAlertController(title: "Stop!", message: "Categoryを選択してください！", preferredStyle: .alert)
-            alert.addAction(
-                UIAlertAction(
-                    title: "cancel",
-                    style: .cancel,
-                    handler: nil
-                )
-            )
-            present(alert, animated: true, completion: nil)
-        }else if emotionLabel.text == ""{
-            let alert: UIAlertController = UIAlertController(title: "Stop!", message: "Emotion Stickerを選択してください！", preferredStyle: .alert)
-            alert.addAction(
-                UIAlertAction(
-                    title: "cancel",
-                    style: .cancel,
-                    handler: nil
-                )
-            )
-            present(alert, animated: true, completion: nil)
-        }else{
-            // 保存しますかアラートを出す
-            let alert: UIAlertController = UIAlertController(title: "保存しますか？", message: titleTextField.text, preferredStyle: .alert)
-            // OKボタン
-            alert.addAction(
-                UIAlertAction(
-                    title: "yes",
-                    style: .default,
-                    handler: { action in
-                        
-                        self.upload()
-                        
-                        print("はいボタンが押されました！")
-                }
-                )
-            )
-            // キャンセルボタン
-            alert.addAction(
-                UIAlertAction(
-                    title: "cancel",
-                    style: .cancel,
-                    handler: {action in
-                        print("いいえボタンが押されました！")
-                }
-                )
-            )
-            present(alert, animated: true, completion: nil)
+        if let text = titleTextField.text, !text.isEmpty, categoryLabel.text != " Select Category", !emotionNumberString.isEmpty {
+            // titleTextField.textがnilでなく、かつ空でない、かつカテゴリーと感情が選択されている場合の保存処理
+            let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
+            let okAction = UIAlertAction(title: "保存する", style: .default) { _ in
+                self.upload()
+            }
+            showAlert(title: "保存しますか？", message: text, actions: [cancelAction, okAction])
+        } else {
+            // 条件に合致しない場合の処理
+            var alertTitle = ""
+            var alertMessage = "保存に必要な情報が不足しています"
+            
+            if titleTextField.text == nil || titleTextField.text!.isEmpty {
+                // タイトル未入力の場合
+                alertTitle = "Titleを入力してください"
+            } else if categoryLabel.text == " Select Category" {
+                // カテゴリー未選択の場合
+                alertTitle = "Categoryを選択してください"
+            } else if emotionNumberString.isEmpty {
+                alertTitle = "Emotion Stickerを選択してください"
+            }
+            
+            let okAction = UIAlertAction(title: "OK", style: .default)
+            showAlert(title: alertTitle, message: alertMessage, actions: [okAction])
         }
     }
     
@@ -442,7 +406,7 @@ class EditRecordViewController: UIViewController,  UIImagePickerControllerDelega
                     "result": self.resultTextField.text!,
                     "place": self.placeTextField.text!,
                     "comment": self.commentTextView.text!,
-                    "emotion": self.emotionLabel.text!,
+                    "emotion": self.emotionNumberString,
                     "image": nil
                 ]
             )
@@ -480,7 +444,7 @@ class EditRecordViewController: UIViewController,  UIImagePickerControllerDelega
                         "result": self.resultTextField.text!,
                         "place": self.placeTextField.text!,
                         "comment": self.commentTextView.text!,
-                        "emotion": self.emotionLabel.text!,
+                        "emotion": self.emotionNumberString,
                         "image": imageURL
                     ]
                 )
@@ -492,48 +456,31 @@ class EditRecordViewController: UIViewController,  UIImagePickerControllerDelega
         }
     }
     
-    @IBAction func deleteRecord() {
-        // 削除しますかアラート
-        let alert: UIAlertController = UIAlertController(title: "削除しますか？", message: titleTextField.text, preferredStyle: .alert)
-        // OKボタン
-        alert.addAction(
-            UIAlertAction(
-                title: "delete",
-                style: .destructive,
-                handler: { action in
-                    
-                   // アニメーション開始
-                    self.activityIndicatorView.startAnimating()
-                    self.ref.child(self.uid!).child("records").child(self.record!.key).removeValue()
-                    // 画像も削除する
-                    let recordRef = self.storageRef.child(self.uid!).child(self.record!.image)
-                    recordRef.delete { error in
-                        if error != nil {
-                            // Uh-oh, an error occurred!
-                        } else {
-                            // File deleted successfully
-                        }
-                    }
-                    // アニメーション終了
-                    self.activityIndicatorView.stopAnimating()
-                    // メイン画面に移動
-                    self.navigationController?.popViewController(animated: true)
-                    
-                    print("削除ボタンが押されました！")
-            }
-            )
-        )
-        // キャンセルボタン
-        alert.addAction(
-            UIAlertAction(
-                title: "cancel",
-                style: .cancel,
-                handler: {action in
-                    print("いいえボタンが押されました！")
-            }
-            )
-        )
-        present(alert, animated: true, completion: nil)
+    @IBAction func deleteRecordButton() {
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
+        let okAction = UIAlertAction(title: "削除する", style: .destructive) { _ in
+            self.deleteRecord()
+            // メイン画面に移動
+            self.navigationController?.popViewController(animated: true)
+        }
+        showAlert(title: "削除しますか？", message: "削除したRECORDSは復元できません", actions: [cancelAction, okAction])
+    }
+    
+    func deleteRecord() {
+        // アニメーション開始
+         self.activityIndicatorView.startAnimating()
+         self.ref.child(self.uid!).child("records").child(self.record!.key).removeValue()
+         // 画像も削除する
+         let recordRef = self.storageRef.child(self.uid!).child(self.record!.image)
+         recordRef.delete { error in
+             if error != nil {
+                 // Uh-oh, an error occurred!
+             } else {
+                 // File deleted successfully
+             }
+         }
+         // アニメーション終了
+         self.activityIndicatorView.stopAnimating()
     }
     
     

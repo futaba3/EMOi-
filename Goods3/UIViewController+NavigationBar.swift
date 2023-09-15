@@ -1,5 +1,5 @@
 //
-//  UIViewController+NavigationBarExtension.swift
+//  UIViewController+NavigationBar.swift
 //  Goods3
 //
 //  Created by Ayana Kudo on 2023/09/15.

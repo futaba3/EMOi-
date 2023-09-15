@@ -570,22 +570,11 @@
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vVs-Vo-nw1">
-                                                <rect key="frame" x="147" y="53" width="20" height="21"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="21" id="8yk-xd-PIN"/>
-                                                    <constraint firstAttribute="width" constant="20" id="iiz-ZX-G4I"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="jPr-9a-ubF" firstAttribute="top" secondItem="58u-sb-DVi" secondAttribute="bottom" constant="8" id="0o1-0y-Ghh"/>
                                             <constraint firstItem="q5J-Mi-cWf" firstAttribute="top" secondItem="Xsc-Ck-9ap" secondAttribute="bottom" constant="8" id="5jx-td-M7X"/>
-                                            <constraint firstItem="vVs-Vo-nw1" firstAttribute="leading" secondItem="Alp-Jt-Fd5" secondAttribute="trailing" constant="7.5" id="6Jx-CO-bAj"/>
                                             <constraint firstItem="Xsc-Ck-9ap" firstAttribute="top" secondItem="ajg-BZ-fd4" secondAttribute="bottom" constant="24" id="70e-DG-DLx"/>
                                             <constraint firstAttribute="trailing" secondItem="jPr-9a-ubF" secondAttribute="trailing" constant="-1" id="AJA-Gp-i30"/>
                                             <constraint firstItem="Xsc-Ck-9ap" firstAttribute="leading" secondItem="blv-nh-bvU" secondAttribute="leading" constant="8" id="AJQ-QW-3YI"/>
@@ -611,7 +600,6 @@
                                             <constraint firstAttribute="bottom" secondItem="q5J-Mi-cWf" secondAttribute="bottom" id="lnI-AS-cIp"/>
                                             <constraint firstItem="T1s-Oc-EaB" firstAttribute="top" secondItem="blv-nh-bvU" secondAttribute="top" id="qi6-fe-VCF"/>
                                             <constraint firstItem="ZU4-Af-aBP" firstAttribute="leading" secondItem="blv-nh-bvU" secondAttribute="leading" constant="8" id="ssG-oJ-kVF"/>
-                                            <constraint firstItem="vVs-Vo-nw1" firstAttribute="top" secondItem="Alp-Jt-Fd5" secondAttribute="top" id="syY-8h-Ni0"/>
                                             <constraint firstAttribute="trailing" secondItem="BO0-06-5bP" secondAttribute="trailing" constant="12" id="uEk-5S-CCs"/>
                                             <constraint firstItem="Alp-Jt-Fd5" firstAttribute="top" secondItem="T1s-Oc-EaB" secondAttribute="bottom" constant="8" id="ujb-QL-Upf"/>
                                             <constraint firstAttribute="trailing" secondItem="58u-sb-DVi" secondAttribute="trailing" constant="5" id="xoW-PY-koA"/>
@@ -648,7 +636,6 @@
                         <outlet property="categoryLabel" destination="T1s-Oc-EaB" id="39M-F0-aO6"/>
                         <outlet property="commentTextView" destination="q5J-Mi-cWf" id="fVv-SO-JKE"/>
                         <outlet property="dateTextField" destination="IQb-25-pdG" id="XSN-9h-CPF"/>
-                        <outlet property="emotionLabel" destination="vVs-Vo-nw1" id="4Uw-Zp-dF2"/>
                         <outlet property="haikeiImageView" destination="mgX-fU-krL" id="OIf-I1-BwL"/>
                         <outlet property="navigationBar" destination="RGD-P8-HAN" id="WUC-Rr-iSa"/>
                         <outlet property="placeTextField" destination="XCL-nz-qx3" id="DuZ-PH-j3v"/>
@@ -688,7 +675,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MEMO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4di-w7-KIg">
-                                <rect key="frame" x="165.33333333333334" y="15" width="62.333333333333343" height="24"/>
+                                <rect key="frame" x="162.66666666666666" y="15" width="68" height="24"/>
                                 <fontDescription key="fontDescription" name="Kano-regular" family="Kano" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -890,7 +877,7 @@
                             </barButtonItem>
                             <barButtonItem title="Delete" image="garbage-16" id="PIU-lc-T3q">
                                 <connections>
-                                    <action selector="deleteGoods" destination="RSM-dZ-nrf" id="dWv-LU-A3K"/>
+                                    <action selector="deleteGoodsButton" destination="RSM-dZ-nrf" id="QVX-39-wYE"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -953,7 +940,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="HDH-aO-0VW">
-                                                    <rect key="frame" x="0.0" y="114.99999999999999" width="119" height="42.333333333333329"/>
+                                                    <rect key="frame" x="0.0" y="115" width="119" height="45"/>
                                                     <fontDescription key="fontDescription" name="Kano-regular" family="Kano" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -965,7 +952,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="ahx-wF-Bp2">
-                                                    <rect key="frame" x="0.0" y="157.33333333333334" width="119" height="17.666666666666657"/>
+                                                    <rect key="frame" x="0.0" y="160" width="119" height="15"/>
                                                     <fontDescription key="fontDescription" name="Kano-regular" family="Kano" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1189,7 +1176,7 @@ Email &amp; Password</string>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CATEGORY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLH-74-m4o">
-                                <rect key="frame" x="143.66666666666666" y="19" width="105.66666666666666" height="23.333333333333329"/>
+                                <rect key="frame" x="140" y="19" width="113" height="20"/>
                                 <fontDescription key="fontDescription" name="Kano-regular" family="Kano" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1382,7 +1369,7 @@ Email &amp; Password</string>
                                                 </connections>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How did you feel?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EzZ-tF-gfn">
-                                                <rect key="frame" x="8" y="53" width="137.33333333333334" height="21"/>
+                                                <rect key="frame" x="8" y="53" width="131.33333333333334" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="uTb-ar-8us"/>
                                                 </constraints>
@@ -1434,21 +1421,12 @@ Email &amp; Password</string>
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Choose Image)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qri-XS-uCP">
-                                                <rect key="frame" x="7.9999999999999929" y="337" width="119.33333333333331" height="23"/>
+                                                <rect key="frame" x="7.9999999999999929" y="337" width="114.33333333333331" height="23"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="23" id="saA-F9-K1F"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Kano-regular" family="Kano" pointSize="17"/>
                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnq-h4-rxZ">
-                                                <rect key="frame" x="153.33333333333334" y="337" width="0.0" height="23"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="23" id="P2S-4D-ngx"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TQO-5u-rHm">
@@ -1554,7 +1532,6 @@ Email &amp; Password</string>
                                             <constraint firstItem="qri-XS-uCP" firstAttribute="top" secondItem="e4S-F9-wuS" secondAttribute="bottom" constant="8" id="U0k-nc-JT4"/>
                                             <constraint firstItem="IxJ-oa-AhG" firstAttribute="top" secondItem="EfR-Mr-muG" secondAttribute="bottom" constant="8" id="XKB-ym-nmK"/>
                                             <constraint firstItem="e4S-F9-wuS" firstAttribute="top" secondItem="OOC-hR-Xdn" secondAttribute="bottom" constant="8" id="Xr0-NZ-4Je"/>
-                                            <constraint firstItem="pnq-h4-rxZ" firstAttribute="leading" secondItem="qri-XS-uCP" secondAttribute="trailing" constant="26" id="Y0w-Tg-Qfi"/>
                                             <constraint firstItem="EfR-Mr-muG" firstAttribute="leading" secondItem="fOR-7w-VNH" secondAttribute="leading" constant="8" id="my1-r6-mqe"/>
                                             <constraint firstItem="EzZ-tF-gfn" firstAttribute="top" secondItem="X82-ry-Xek" secondAttribute="bottom" constant="8" id="n2K-Xy-Sgv"/>
                                             <constraint firstItem="IxJ-oa-AhG" firstAttribute="leading" secondItem="fOR-7w-VNH" secondAttribute="leading" id="peE-8B-wxi"/>
@@ -1564,7 +1541,6 @@ Email &amp; Password</string>
                                             <constraint firstAttribute="trailing" secondItem="IxJ-oa-AhG" secondAttribute="trailing" id="qy5-05-zWp"/>
                                             <constraint firstItem="e4S-F9-wuS" firstAttribute="leading" secondItem="fOR-7w-VNH" secondAttribute="leading" constant="-1" id="spc-vh-Xva"/>
                                             <constraint firstItem="X82-ry-Xek" firstAttribute="top" secondItem="p6x-Bj-yIm" secondAttribute="top" id="tPK-eL-l31"/>
-                                            <constraint firstItem="pnq-h4-rxZ" firstAttribute="top" secondItem="e4S-F9-wuS" secondAttribute="bottom" constant="8" id="u2r-i0-A4h"/>
                                             <constraint firstItem="EfR-Mr-muG" firstAttribute="top" secondItem="nbY-Lc-eZw" secondAttribute="bottom" constant="24" id="vVf-1N-nTE"/>
                                             <constraint firstItem="sbX-kt-WKV" firstAttribute="leading" secondItem="TQO-5u-rHm" secondAttribute="leading" id="wgk-7l-n9B"/>
                                         </constraints>
@@ -1598,7 +1574,7 @@ Email &amp; Password</string>
                             </barButtonItem>
                             <barButtonItem title="Delete" image="garbage-16" id="tnO-f2-nry">
                                 <connections>
-                                    <action selector="deleteRecord" destination="6yZ-ex-dHg" id="cBM-Xh-gFD"/>
+                                    <action selector="deleteRecordButton" destination="6yZ-ex-dHg" id="pZw-Zz-sJi"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -1608,7 +1584,6 @@ Email &amp; Password</string>
                         <outlet property="categoryLabel" destination="X82-ry-Xek" id="R2r-Mv-qJV"/>
                         <outlet property="commentTextView" destination="IxJ-oa-AhG" id="aov-Oq-Dqf"/>
                         <outlet property="dateTextField" destination="98l-3a-GAT" id="UAC-pw-QiT"/>
-                        <outlet property="emotionLabel" destination="pnq-h4-rxZ" id="fIU-DH-5BS"/>
                         <outlet property="haikeiImageView" destination="sbX-kt-WKV" id="hyF-GS-Nfl"/>
                         <outlet property="placeTextField" destination="cWM-dD-RV9" id="VqH-R1-bfg"/>
                         <outlet property="recordsImageView" destination="TQO-5u-rHm" id="Hzr-im-5KO"/>
@@ -1689,8 +1664,8 @@ Email &amp; Password</string>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="19a-rz-VRB"/>
-        <segue reference="Hx3-6Q-EG1"/>
-        <segue reference="O9r-mU-iBZ"/>
+        <segue reference="Dem-v5-kfw"/>
+        <segue reference="dvR-gD-n65"/>
         <segue reference="1mR-cg-9Aj"/>
         <segue reference="TCW-OK-tVJ"/>
     </inferredMetricsTieBreakers>
