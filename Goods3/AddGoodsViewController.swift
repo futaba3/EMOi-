@@ -66,6 +66,7 @@ class AddGoodsViewController: UIViewController, UIImagePickerControllerDelegate,
         placeTextField.delegate = self
         
         // ナビゲーションバーのフォントと色
+        navigationBar.delegate = self
         navigationBar.tintColor = .black
         navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Kano", size: 20), .foregroundColor: UIColor.black]
         
@@ -79,9 +80,6 @@ class AddGoodsViewController: UIViewController, UIImagePickerControllerDelegate,
         activityIndicatorView.style = .whiteLarge
         activityIndicatorView.color = UIColor.init(red: 41/255, green: 94/255, blue: 164/255, alpha: 100/100)
         self.view.addSubview(activityIndicatorView)
-        
-        
-        
     }
     
     // 日付決定ボタン押す

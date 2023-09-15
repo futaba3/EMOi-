@@ -85,9 +85,8 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         resultTextField.delegate = self
         placeTextField.delegate = self
         
-        // ナビゲーションバーのアイテムの色　（戻る　＜　とか　読み込みゲージとか）
+        navigationBar.delegate = self
         navigationBar.tintColor = .black
-        // ナビゲーションバーのフォントと色
         navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Kano", size: 20), .foregroundColor: UIColor.black]
         
         // emotionボタンの角を丸める
@@ -107,12 +106,7 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         activityIndicatorView.style = .whiteLarge
         activityIndicatorView.color = UIColor.init(red: 41/255, green: 94/255, blue: 164/255, alpha: 100/100)
         self.view.addSubview(activityIndicatorView)
-        
-        // ステータスバーの文字色を黒くする
-        setNeedsStatusBarAppearanceUpdate()
-        
     }
-    
     // 名前入力後にキーボードが閉じる
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
