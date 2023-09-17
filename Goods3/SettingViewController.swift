@@ -174,12 +174,12 @@ class SettingViewController: UIViewController, UINavigationControllerDelegate, U
                     // Account deleted.
                 }
             }
-            self?.showAutoDismissAlert(title: "ご利用いただきありがとうございました", message: "ログイン画面に移動します") {
+            self?.showAutoDismissAlert(title: "ご利用いただき\nありがとうございました", message: "ログイン画面に移動します") {
                 self?.presentLoginVC()
             }
             print("退会が押されました！")
         }
-        showAlert(title: "本当に退会しますか？", message: "退会するとRECORDS,GOODS,CATEGORYのデータが削除され、復元することはできません", actions: [cancelAction, okAction])
+        showAlert(title: "本当に退会しますか？", message: "退会するとアプリに登録した全てのデータが削除され、復元することはできません", actions: [cancelAction, okAction])
     }
     
     func presentLoginVC() {
