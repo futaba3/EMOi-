@@ -294,10 +294,10 @@ class EditGoodsViewController: UIViewController, UIImagePickerControllerDelegate
     
     @IBAction func deleteGoodsButton() {
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
-        let okAction = UIAlertAction(title: "削除する", style: .destructive) { _ in
-            self.deleteGoods()
+        let okAction = UIAlertAction(title: "削除する", style: .destructive) { [weak self] _ in
+            self?.deleteGoods()
             // メイン画面に移動
-            self.navigationController?.popViewController(animated: true)
+            self?.navigationController?.popViewController(animated: true)
         }
         showAlert(title: "削除しますか？", message: "削除したGOODSは復元できません", actions: [cancelAction, okAction])
     }

@@ -316,8 +316,8 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         if let text = titleTextField.text, !text.isEmpty, categoryLabel.text != " Select Category", emotionNumber != 0 {
             // titleTextField.textがnilでなく、かつ空でない、かつカテゴリーと感情が選択されている場合の保存処理
             let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
-            let okAction = UIAlertAction(title: "保存する", style: .default) { _ in
-                self.upload()
+            let okAction = UIAlertAction(title: "保存する", style: .default) { [weak self] _ in
+                self?.upload()
             }
             showAlert(title: "保存しますか？", message: text, actions: [cancelAction, okAction])
         } else {
@@ -407,8 +407,8 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
     
     @IBAction func cancel(){
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
-        let okAction = UIAlertAction(title: "戻る", style: .destructive) { _ in
-            self.dismiss(animated: true, completion: nil)
+        let okAction = UIAlertAction(title: "戻る", style: .destructive) { [weak self] _ in
+            self?.dismiss(animated: true, completion: nil)
         }
         showAlert(title: "RECORDS一覧に戻りますか？", message: "入力した内容は保存されません", actions: [cancelAction, okAction])
     }

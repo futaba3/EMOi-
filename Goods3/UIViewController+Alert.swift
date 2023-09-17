@@ -36,12 +36,12 @@ public extension UIViewController {
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { _ in
             completion(nil) // キャンセル時はnilを返す
         }
-        let okAction = UIAlertAction(title: okTitle, style: .default) { _ in
+        let okAction = UIAlertAction(title: okTitle, style: .default) { [weak self] _ in
             if let textField = alert.textFields?.first, let text = textField.text, !text.isEmpty {
                 completion(text)
             } else {
                 completion(nil)
-                self.showAutoDismissAlert(title: "\(errorText)を\n入力してください", message: "", completion: nil)
+                self?.showAutoDismissAlert(title: "\(errorText)を\n入力してください", message: "", completion: nil)
             }
         }
         alert.addAction(cancelAction)

@@ -118,10 +118,10 @@ class SettingViewController: UIViewController, UINavigationControllerDelegate, U
                         self?.table.deselectRow(at: $0, animated: true)
                     }
                 }
-                let okAction = UIAlertAction(title: "ログアウト", style: .destructive) { _ in
-                    self.logout()
-                    self.showAutoDismissAlert(title: "ログアウトしました", message: "ログイン画面に移動します") {
-                        self.presentLoginVC()
+                let okAction = UIAlertAction(title: "ログアウト", style: .destructive) { [weak self] _ in
+                    self?.logout()
+                    self?.showAutoDismissAlert(title: "ログアウトしました", message: "ログイン画面に移動します") {
+                        self?.presentLoginVC()
                     }
                 }
                 showAlert(title: "ログアウトしますか？", message: "", actions: [cancelAction, okAction])
@@ -129,9 +129,9 @@ class SettingViewController: UIViewController, UINavigationControllerDelegate, U
                 // 退会
             case 1:
                 // 退会確認画面に進むアラート
-                let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { _ in
-                    self.table.indexPathsForSelectedRows?.forEach {
-                        self.table.deselectRow(at: $0, animated: true)
+                let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { [weak self] _ in
+                    self?.table.indexPathsForSelectedRows?.forEach {
+                        self?.table.deselectRow(at: $0, animated: true)
                     }
                 }
                 let okAction = UIAlertAction(title: "退会する", style: .destructive) { _ in
@@ -160,9 +160,9 @@ class SettingViewController: UIViewController, UINavigationControllerDelegate, U
     
     func showDeleteAccontConfirmAlert() {
         // 退会確認画面に進むアラート
-        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { _ in
-            self.table.indexPathsForSelectedRows?.forEach {
-                self.table.deselectRow(at: $0, animated: true)
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { [weak self] _ in
+            self?.table.indexPathsForSelectedRows?.forEach {
+                self?.table.deselectRow(at: $0, animated: true)
             }
         }
         let okAction = UIAlertAction(title: "退会する", style: .destructive) { [weak self] _ in

@@ -53,8 +53,8 @@ class CommentTextViewController: UIViewController {
 
     @IBAction func cancel(){
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
-        let okAction = UIAlertAction(title: "戻る", style: .destructive) { _ in
-            self.dismiss(animated: true, completion: nil)
+        let okAction = UIAlertAction(title: "戻る", style: .destructive) { [weak self] _ in
+            self?.dismiss(animated: true, completion: nil)
         }
         showAlert(title: "RECORD入力画面に戻りますか？", message: "入力した内容は保存されません", actions: [cancelAction, okAction])
     }

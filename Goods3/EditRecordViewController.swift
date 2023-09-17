@@ -364,8 +364,8 @@ class EditRecordViewController: UIViewController,  UIImagePickerControllerDelega
         if let text = titleTextField.text, !text.isEmpty, categoryLabel.text != " Select Category", !emotionNumberString.isEmpty {
             // titleTextField.textがnilでなく、かつ空でない、かつカテゴリーと感情が選択されている場合の保存処理
             let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
-            let okAction = UIAlertAction(title: "保存する", style: .default) { _ in
-                self.upload()
+            let okAction = UIAlertAction(title: "保存する", style: .default) { [weak self] _ in
+                self?.upload()
             }
             showAlert(title: "保存しますか？", message: text, actions: [cancelAction, okAction])
         } else {
@@ -458,10 +458,10 @@ class EditRecordViewController: UIViewController,  UIImagePickerControllerDelega
     
     @IBAction func deleteRecordButton() {
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
-        let okAction = UIAlertAction(title: "削除する", style: .destructive) { _ in
-            self.deleteRecord()
+        let okAction = UIAlertAction(title: "削除する", style: .destructive) { [weak self] _ in
+            self?.deleteRecord()
             // メイン画面に移動
-            self.navigationController?.popViewController(animated: true)
+            self?.navigationController?.popViewController(animated: true)
         }
         showAlert(title: "削除しますか？", message: "削除したRECORDSは復元できません", actions: [cancelAction, okAction])
     }
