@@ -77,7 +77,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="A3G-UB-44R"/>
                                 </constraints>
-                                <state key="normal" image="picture-16">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="photo.fill" catalog="system">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -98,7 +99,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="ux3-u5-6j9"/>
                                 </constraints>
-                                <state key="normal" image="camera-16">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="camera.fill" catalog="system">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -125,7 +127,8 @@
                                                 <action selector="cancel" destination="NVd-Vi-swI" id="doW-Gl-Ltk"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" image="checkmark" id="cjz-Or-Y7j">
+                                        <barButtonItem key="rightBarButtonItem" title="save" image="checkmark.circle" catalog="system" id="cjz-Or-Y7j">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <connections>
                                                 <action selector="saveGoods" destination="NVd-Vi-swI" id="zNK-2y-rbM"/>
                                             </connections>
@@ -326,7 +329,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="RECORDS" id="G0M-Q5-oi6">
                         <barButtonItem key="backBarButtonItem" title=" " id="hhu-Nz-qV1"/>
-                        <barButtonItem key="leftBarButtonItem" title="Setting" image="settings" id="tWa-Y0-mh1">
+                        <barButtonItem key="leftBarButtonItem" title="Setting" image="gearshape.fill" catalog="system" id="tWa-Y0-mh1">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="qo0-Dv-JIv" kind="show" id="19a-rz-VRB"/>
                             </connections>
@@ -364,7 +368,8 @@
                                                 <action selector="cancel" destination="d6Q-sU-D8v" id="q2c-s5-zYn"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" image="checkmark" id="YDL-lx-0wx">
+                                        <barButtonItem key="rightBarButtonItem" title="save" image="checkmark.circle" catalog="system" id="YDL-lx-0wx">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <connections>
                                                 <action selector="saveRecords" destination="d6Q-sU-D8v" id="RoU-UW-0ZV"/>
                                             </connections>
@@ -458,7 +463,8 @@
                                                             <constraint firstAttribute="height" constant="45" id="hsu-mS-jeQ"/>
                                                             <constraint firstAttribute="width" constant="65" id="xLU-vk-elV"/>
                                                         </constraints>
-                                                        <state key="normal" image="camera-16">
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" image="camera.fill" catalog="system">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -471,7 +477,8 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="45" id="4Uf-BZ-Odz"/>
                                                         </constraints>
-                                                        <state key="normal" image="picture-16">
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" image="photo.fill" catalog="system">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -697,7 +704,8 @@
                                     <constraint firstAttribute="width" constant="45" id="jdw-Ui-kn4"/>
                                     <constraint firstAttribute="height" constant="45" id="qc1-UR-TVb"/>
                                 </constraints>
-                                <state key="normal" image="checkmark"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="checkmark.circle" catalog="system"/>
                                 <connections>
                                     <action selector="done" destination="cNu-1K-S3d" eventType="touchUpInside" id="odS-DL-3v5"/>
                                 </connections>
@@ -788,7 +796,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="ZUp-td-QaX"/>
                                 </constraints>
-                                <state key="normal" image="camera-16">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="camera.fill" catalog="system">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -810,7 +819,8 @@
                                     <constraint firstAttribute="height" constant="36" id="F5U-ze-c07"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="17"/>
-                                <state key="normal" image="picture-16">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="photo.fill" catalog="system">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -870,12 +880,14 @@
                     <navigationItem key="navigationItem" title="EDIT GOODS" id="jGI-k6-H0f">
                         <barButtonItem key="backBarButtonItem" title=" " id="Zog-hT-Dac"/>
                         <rightBarButtonItems>
-                            <barButtonItem title="Save" image="checkmark" id="lCp-Mr-lV6">
+                            <barButtonItem title="Save" image="checkmark.circle" catalog="system" id="lCp-Mr-lV6">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="saveGoods" destination="RSM-dZ-nrf" id="UNa-59-3nK"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Delete" image="garbage-16" id="PIU-lc-T3q">
+                            <barButtonItem title="Delete" image="trash" catalog="system" id="PIU-lc-T3q">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="deleteGoodsButton" destination="RSM-dZ-nrf" id="QVX-39-wYE"/>
                                 </connections>
@@ -1031,7 +1043,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="GOODS" id="QNM-h9-0h0">
                         <barButtonItem key="backBarButtonItem" title=" " id="G65-6M-Afc"/>
-                        <barButtonItem key="leftBarButtonItem" title="Setting" image="settings" id="8vK-7q-jzM">
+                        <barButtonItem key="leftBarButtonItem" title="Setting" image="gearshape.fill" catalog="system" id="8vK-7q-jzM">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="qo0-Dv-JIv" kind="show" id="vga-LE-7bp"/>
                             </connections>
@@ -1398,7 +1411,8 @@ Email &amp; Password</string>
                                                             <constraint firstAttribute="height" constant="45" id="c6g-jl-lVQ"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                        <state key="normal" image="camera-16">
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" image="camera.fill" catalog="system">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -1411,7 +1425,8 @@ Email &amp; Password</string>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="45" id="Z82-Vu-dRf"/>
                                                         </constraints>
-                                                        <state key="normal" image="picture-16">
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" image="photo.fill" catalog="system">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -1567,12 +1582,14 @@ Email &amp; Password</string>
                     <navigationItem key="navigationItem" title="EDIT RECORD" id="ST6-RH-MeR">
                         <barButtonItem key="backBarButtonItem" title=" " id="xqY-QE-AAq"/>
                         <rightBarButtonItems>
-                            <barButtonItem title="Add" image="checkmark" id="q2O-JG-IzO">
+                            <barButtonItem title="save" image="checkmark.circle" catalog="system" id="q2O-JG-IzO">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="saveRecords" destination="6yZ-ex-dHg" id="sEm-yE-KuP"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Delete" image="garbage-16" id="tnO-f2-nry">
+                            <barButtonItem title="delete" image="trash" catalog="system" id="tnO-f2-nry">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="deleteRecordButton" destination="6yZ-ex-dHg" id="pZw-Zz-sJi"/>
                                 </connections>
@@ -1678,16 +1695,17 @@ Email &amp; Password</string>
         <image name="GoodsIsEmpty" width="1242" height="2208"/>
         <image name="RecordsIsEmpty" width="1242" height="2208"/>
         <image name="align-left16" width="21.333333969116211" height="21.333333969116211"/>
-        <image name="camera-16" width="21.333333969116211" height="21.333333969116211"/>
+        <image name="camera.fill" catalog="system" width="128" height="93"/>
         <image name="checkmark" width="24" height="24"/>
+        <image name="checkmark.circle" catalog="system" width="128" height="123"/>
         <image name="collect-16" width="21.333333969116211" height="21.333333969116211"/>
         <image name="cross-16" width="21.333333969116211" height="21.333333969116211"/>
-        <image name="garbage-16" width="21.333333969116211" height="21.333333969116211"/>
+        <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="haikei" width="2250" height="4000"/>
         <image name="notebook-16" width="21.333333969116211" height="21.333333969116211"/>
-        <image name="picture-16" width="21.333333969116211" height="21.333333969116211"/>
+        <image name="photo.fill" catalog="system" width="128" height="93"/>
         <image name="plus-16" width="21.333333969116211" height="21.333333969116211"/>
-        <image name="settings" width="21.333333969116211" height="21.333333969116211"/>
+        <image name="trash" catalog="system" width="117" height="128"/>
         <systemColor name="groupTableViewBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

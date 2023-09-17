@@ -67,7 +67,7 @@ class AddGoodsViewController: UIViewController, UIImagePickerControllerDelegate,
         
         // ナビゲーションバーのフォントと色
         navigationBar.delegate = self
-        navigationBar.tintColor = .black
+        navigationBar.tintColor = .white
         navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Kano", size: 20), .foregroundColor: UIColor.black]
         
         // 更新中にくるくるするやつ

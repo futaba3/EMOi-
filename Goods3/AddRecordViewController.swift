@@ -87,7 +87,7 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         placeTextField.delegate = self
         
         navigationBar.delegate = self
-        navigationBar.tintColor = .black
+        navigationBar.tintColor = .white
         navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Kano", size: 20), .foregroundColor: UIColor.black]
         
         // emotionボタンの角を丸める
