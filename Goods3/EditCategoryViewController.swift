@@ -95,7 +95,7 @@ class EditCategoryViewController: UIViewController, UITableViewDataSource, UITab
     
     // アラートにtextFieldを入れてカテゴリーを入力、セルを追加
     @IBAction func onAdd(_ sender: Any) {
-        showTextFieldAlert(title: "ADD CATEGORY", message: "カテゴリー名を入力してください", placeholder: "グループ、チーム、キャラクター名", okTitle: "追加する") { text in
+        showTextFieldAlert(title: "ADD CATEGORY", message: "カテゴリー名を入力してください", placeholder: "グループ、チーム、キャラクター名", okTitle: "追加する", errorText: "カテゴリー名") { text in
             if let text = text {
                 self.categories.insert(text, at: 0)
                 // firebaseに保存する

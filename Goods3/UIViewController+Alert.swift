@@ -16,16 +16,19 @@ public extension UIViewController {
         present(alert, animated: true)
     }
     
-    func showAutoDismissAlert(title: String, message: String) {
+    func showAutoDismissAlert(title: String, message: String, completion: (() -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         present(alert, animated: true)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            alert.dismiss(animated: true, completion: nil)
+            alert.dismiss(animated: true) {
+                // アラートが閉じられた後にコードを実行
+                completion?()
+            }
         }
     }
     
-    func showTextFieldAlert(title: String, message: String, placeholder: String, okTitle: String, completion: @escaping (String?) -> Void) {
+    func showTextFieldAlert(title: String, message: String, placeholder: String, okTitle: String, errorText: String, completion: @escaping (String?) -> Void) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addTextField { textField in
             textField.placeholder = placeholder
@@ -38,7 +41,7 @@ public extension UIViewController {
                 completion(text)
             } else {
                 completion(nil)
-                self.showAutoDismissAlert(title: "カテゴリー名を\n入力してください", message: "")
+                self.showAutoDismissAlert(title: "\(errorText)を\n入力してください", message: "", completion: nil)
             }
         }
         alert.addAction(cancelAction)
