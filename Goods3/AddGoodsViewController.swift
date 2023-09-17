@@ -66,7 +66,8 @@ class AddGoodsViewController: UIViewController, UIImagePickerControllerDelegate,
         placeTextField.delegate = self
         
         // ナビゲーションバーのフォントと色
-        navigationBar.tintColor = .black
+        navigationBar.delegate = self
+        navigationBar.tintColor = .white
         navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Kano", size: 20), .foregroundColor: UIColor.black]
         
         // 更新中にくるくるするやつ
@@ -79,9 +80,6 @@ class AddGoodsViewController: UIViewController, UIImagePickerControllerDelegate,
         activityIndicatorView.style = .whiteLarge
         activityIndicatorView.color = UIColor.init(red: 41/255, green: 94/255, blue: 164/255, alpha: 100/100)
         self.view.addSubview(activityIndicatorView)
-        
-        
-        
     }
     
     // 日付決定ボタン押す
@@ -177,58 +175,29 @@ class AddGoodsViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
 
-    // 保存するメソッド
     @IBAction func saveGoods(){
-        // なまえ入力されてないアラート
-        if titleTextField.text == ""{
-            let alert: UIAlertController = UIAlertController(title: "Stop!", message: "Titleを入力してください！", preferredStyle: .alert)
-            alert.addAction(
-                UIAlertAction(
-                    title: "cancel",
-                    style: .cancel,
-                    handler: nil
-                )
-            )
-            present(alert, animated: true, completion: nil)
+        if let text = titleTextField.text, !text.isEmpty, categoryLabel.text != "Select Category" {
+            // titleTextField.textがnilでなく、かつ空でない、かつカテゴリーが選択されている場合の保存処理
+            let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
+            let okAction = UIAlertAction(title: "保存する", style: .default) { [weak self] _ in
+                self?.upload()
+            }
+            showAlert(title: "保存しますか？", message: text, actions: [cancelAction, okAction])
+        } else {
+            // 条件に合致しない場合の処理
+            var alertTitle = ""
+            var alertMessage = "保存に必要な情報が不足しています"
             
-        }else if categoryLabel.text == "Select Category"{
-            let alert: UIAlertController = UIAlertController(title: "Stop!", message: "Categoryを選択してください！", preferredStyle: .alert)
-            alert.addAction(
-                UIAlertAction(
-                    title: "cancel",
-                    style: .cancel,
-                    handler: nil
-                )
-            )
-            present(alert, animated: true, completion: nil)
+            if titleTextField.text == nil || titleTextField.text!.isEmpty {
+                // タイトル未入力の場合
+                alertTitle = "Titleを入力してください"
+            } else if categoryLabel.text == "Select Category" {
+                // カテゴリー未選択の場合
+                alertTitle = "Categoryを選択してください"
+            }
             
-        }else{
-            // 保存しますかアラートを出す
-            let alert: UIAlertController = UIAlertController(title: "保存しますか？", message: titleTextField.text, preferredStyle: .alert)
-            // OKボタン
-            alert.addAction(
-                UIAlertAction(
-                    title: "yes",
-                    style: .default,
-                    handler: { action in
-                        
-                        self.upload()
-                        
-                        print("はいボタンが押されました！")
-                }
-                )
-            )
-            // キャンセルボタン
-            alert.addAction(
-                UIAlertAction(
-                    title: "cancel",
-                    style: .cancel,
-                    handler: {action in
-                        print("いいえボタンが押されました！")
-                }
-                )
-            )
-            present(alert, animated: true, completion: nil)
+            let okAction = UIAlertAction(title: "OK", style: .default)
+            showAlert(title: alertTitle, message: alertMessage, actions: [okAction])
         }
     }
     
@@ -291,34 +260,11 @@ class AddGoodsViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func cancel(){
-    // 保存しますかアラートを出す
-        let alert: UIAlertController = UIAlertController(title: "GOODS一覧に戻りますか？", message: "内容は保存されません", preferredStyle: .alert)
-        // OKボタン
-        alert.addAction(
-            UIAlertAction(
-                title: "はい",
-                style: .destructive,
-                handler: { action in
-                    
-                    self.dismiss(animated: true, completion: nil)
-                    
-                    print("はいボタンが押されました！")
-            }
-            )
-        )
-        // キャンセルボタン
-        alert.addAction(
-            UIAlertAction(
-                title: "いいえ",
-                style: .cancel,
-                handler: {action in
-                    print("いいえボタンが押されました！")
-            }
-            )
-        )
-        present(alert, animated: true, completion: nil)
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
+        let okAction = UIAlertAction(title: "戻る", style: .destructive) { [weak self] _ in
+            self?.dismiss(animated: true, completion: nil)
+        }
+        showAlert(title: "GOODS一覧に戻りますか？", message: "入力した内容は保存されません", actions: [cancelAction, okAction])
     }
-    
-    
 }
 

@@ -43,11 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    // facebook&Google&電話番号認証時に呼ばれる関数
+    // Google&電話番号認証時に呼ばれる
     func application(_ app: UIApplication, open url: URL,
                      options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
         let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String?
-        // GoogleもしくはFacebook認証の場合、trueを返す
+        // Google認証の場合、trueを返す
         if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
             return true
         }
