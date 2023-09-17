@@ -323,7 +323,7 @@ class AddRecordViewController: UIViewController, UIImagePickerControllerDelegate
         } else {
             // 条件に合致しない場合の処理
             var alertTitle = ""
-            var alertMessage = "保存に必要な情報が不足しています"
+            let alertMessage = "保存に必要な情報が不足しています"
             
             if titleTextField.text == nil || titleTextField.text!.isEmpty {
                 // タイトル未入力の場合

@@ -1382,7 +1382,7 @@ Email &amp; Password</string>
                                                 </connections>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How did you feel?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EzZ-tF-gfn">
-                                                <rect key="frame" x="8" y="53" width="131.33333333333334" height="21"/>
+                                                <rect key="frame" x="8" y="53" width="137.33333333333334" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="uTb-ar-8us"/>
                                                 </constraints>
@@ -1436,7 +1436,7 @@ Email &amp; Password</string>
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Choose Image)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qri-XS-uCP">
-                                                <rect key="frame" x="7.9999999999999929" y="337" width="114.33333333333331" height="23"/>
+                                                <rect key="frame" x="7.9999999999999929" y="337" width="119.33333333333331" height="23"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="23" id="saA-F9-K1F"/>
                                                 </constraints>
