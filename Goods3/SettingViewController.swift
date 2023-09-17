@@ -41,7 +41,7 @@ class SettingViewController: UIViewController, UINavigationControllerDelegate, U
         ref = Database.database().reference()
         storageRef = Storage.storage().reference()
         
-
+        
         table.dataSource = self
         table.delegate = self
         
@@ -53,7 +53,7 @@ class SettingViewController: UIViewController, UINavigationControllerDelegate, U
         
         
     }
-        
+    
     // セクションの数
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -90,13 +90,13 @@ class SettingViewController: UIViewController, UINavigationControllerDelegate, U
         
         return cell!
     }
-
+    
     // セルが押された時に呼ばれるメソッド
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // sectionで表示内容わける
         if indexPath.section == 0 {
             switch indexPath.row {
-            // カテゴリー画面に飛ぶ
+                // カテゴリー画面に飛ぶ
             case 0:
                 // セルの選択を解除
                 tableView.deselectRow(at: indexPath, animated: true)
@@ -107,105 +107,39 @@ class SettingViewController: UIViewController, UINavigationControllerDelegate, U
                 break
                 
             }
-            } else if indexPath.section == 1 {
+        } else if indexPath.section == 1 {
             
             switch indexPath.row {
-            // ログアウト
+                // ログアウト
             case 0:
-                // ログアウトしますかアラート
-                let alert: UIAlertController = UIAlertController(title: "ログアウトしますか？", message: "YESを押すとログアウトします", preferredStyle: .alert)
-                // ログアウトボタン
-                alert.addAction(
-                    UIAlertAction(
-                        title: "YES",
-                        style: .destructive,
-                        handler: { action in
-                            
-                            do {
-                                try Auth.auth().signOut()
-                            }
-                            // エラーの時
-                            catch {
-                                print("error")
-                            }
-                            
-                            // ログイン画面に遷移
-                            // 同じstororyboard内であることを定義
-                            let storyboard: UIStoryboard = self.storyboard!
-                            // 移動先のstoryboard
-                            let login = storyboard.instantiateViewController(withIdentifier: "login")
-                            login.modalPresentationStyle = .fullScreen
-                            self.present(login, animated: true, completion: nil)
-                            
-                            print("ログアウトボタンが押されました！")
+                let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { [weak self] _ in
+                    // セルの選択解除
+                    self?.table.indexPathsForSelectedRows?.forEach {
+                        self?.table.deselectRow(at: $0, animated: true)
                     }
-                    )
-                )
-                // キャンセルボタン
-                alert.addAction(
-                    UIAlertAction(
-                        title: "NO",
-                        style: .cancel,
-                        handler: {action in
-                            // tableviewのcellの選択解除
-                            self.table.indexPathsForSelectedRows?.forEach {
-                                self.table.deselectRow(at: $0, animated: true)
-                            }
-                            print("NOボタンが押されました！")
+                }
+                let okAction = UIAlertAction(title: "ログアウト", style: .destructive) { [weak self] _ in
+                    self?.logout()
+                    self?.showAutoDismissAlert(title: "ログアウトしました", message: "ログイン画面に移動します") {
+                        self?.presentLoginVC()
                     }
-                    )
-                )
-                present(alert, animated: true, completion: nil)
+                }
+                showAlert(title: "ログアウトしますか？", message: "", actions: [cancelAction, okAction])
                 
-            // 退会
+                // 退会
             case 1:
-                // 退会しますかアラート
-                let alert: UIAlertController = UIAlertController(title: "退会しますか？", message: "退会するとgoodsとrecordsのデータが削除され、復元することはできません。", preferredStyle: .alert)
-                
-                // 退会ボタン
-                alert.addAction(
-                    UIAlertAction(
-                        title: "退会する",
-                        style: .destructive,
-                        handler: { action in
-                            // ユーザーを削除
-                            self.user?.delete { error in
-                                if let error = error {
-                                    // An error happened.
-                                } else {
-                                    // Account deleted.
-                                }
-                            }
-                            
-                            // ログイン画面に遷移
-                            // 同じstororyboard内であることを定義
-                            let storyboard: UIStoryboard = self.storyboard!
-                            // 移動先のstoryboard
-                            let login = storyboard.instantiateViewController(withIdentifier: "login")
-                            login.modalPresentationStyle = .fullScreen
-                            self.present(login, animated: true, completion: nil)
-                            
-                            print("退会ボタンが押されました！")
-                        }
-                    )
-                )
-                // キャンセルボタン
-                alert.addAction(
-                    UIAlertAction(
-                        title: "NO",
-                        style: .cancel,
-                        handler: {action in
-                            // tableviewのcellの選択解除
-                            self.table.indexPathsForSelectedRows?.forEach {
-                                self.table.deselectRow(at: $0, animated: true)
-                            }
-                            print("NOボタンが押されました！")
-                        }
-                    )
-                )
-                present(alert, animated: true, completion: nil)
-                
-            // 何もしないbreak
+                // 退会確認画面に進むアラート
+                let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { [weak self] _ in
+                    self?.table.indexPathsForSelectedRows?.forEach {
+                        self?.table.deselectRow(at: $0, animated: true)
+                    }
+                }
+                let okAction = UIAlertAction(title: "退会する", style: .destructive) { _ in
+                    // 確認画面で退会処理
+                    self.showDeleteAccontConfirmAlert()
+                }
+                showAlert(title: "退会しますか？", message: "退会するを押すと確認画面に進みます", actions: [cancelAction, okAction])
+
             default:
                 break
             }
@@ -213,6 +147,48 @@ class SettingViewController: UIViewController, UINavigationControllerDelegate, U
         
     }
     
+    func logout() {
+        do {
+            try Auth.auth().signOut()
+        }
+        catch {
+            print("error")
+        }
+        
+        print("ログアウトボタンが押されました！")
+    }
     
-   
+    func showDeleteAccontConfirmAlert() {
+        // 退会確認画面に進むアラート
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { [weak self] _ in
+            self?.table.indexPathsForSelectedRows?.forEach {
+                self?.table.deselectRow(at: $0, animated: true)
+            }
+        }
+        let okAction = UIAlertAction(title: "退会する", style: .destructive) { [weak self] _ in
+            // ユーザーを削除
+            self?.user?.delete { error in
+                if let error = error {
+                    // An error happened.
+                } else {
+                    // Account deleted.
+                }
+            }
+            self?.showAutoDismissAlert(title: "ご利用いただき\nありがとうございました", message: "ログイン画面に移動します") {
+                self?.presentLoginVC()
+            }
+            print("退会が押されました！")
+        }
+        showAlert(title: "本当に退会しますか？", message: "退会するとアプリに登録した全てのデータが削除され、復元することはできません", actions: [cancelAction, okAction])
+    }
+    
+    func presentLoginVC() {
+        // 同じstororyboard内であることを定義
+        let storyboard: UIStoryboard = self.storyboard!
+        // 移動先のstoryboard
+        let login = storyboard.instantiateViewController(withIdentifier: "login")
+        login.modalPresentationStyle = .fullScreen
+        self.present(login, animated: true, completion: nil)
+    }
+    
 }

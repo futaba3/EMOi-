@@ -95,33 +95,19 @@ class EditCategoryViewController: UIViewController, UITableViewDataSource, UITab
     
     // アラートにtextFieldを入れてカテゴリーを入力、セルを追加
     @IBAction func onAdd(_ sender: Any) {
-        
-        let alert: UIAlertController = UIAlertController(title: "Add Category",
-                                                         message: "カテゴリー名を記入してください",
-                                                         preferredStyle: UIAlertController.Style.alert)
-        alert.addTextField(configurationHandler: { (textField:UITextField) -> Void in
-            textField.placeholder = "ex) グループ、チーム、キャラクター名"
-        })
-        let okAction = UIAlertAction(title: "OK",
-                                     style: UIAlertAction.Style.default,
-                                     handler:{
-                                        (action: UIAlertAction) -> Void in
-                                        self.categories.insert(alert.textFields!.first!.text!, at: 0)
-                                        // firebaseに保存する
-                                        self.ref.child(self.uid!).child("categories").setValue(self.categories)
-                                        // <ポイント>
-                                        self.table.beginUpdates()
-                                        self.table.insertRows(at: [IndexPath(row: 0, section: 0)],
-                                                                  with: .automatic)
-                                        self.table.endUpdates()
-        })
-        let cancelAction = UIAlertAction(title: "Cancel",
-                                         style: UIAlertAction.Style.cancel,
-                                         handler: nil)
-        alert.addAction(okAction)
-        alert.addAction(cancelAction)
-        self.present(alert, animated: true, completion: nil)
-        
+        showTextFieldAlert(title: "ADD CATEGORY", message: "カテゴリー名を入力してください", placeholder: "グループ、チーム、キャラクター名", okTitle: "追加する", errorText: "カテゴリー名") { text in
+            if let text = text {
+                self.categories.insert(text, at: 0)
+                // firebaseに保存する
+                self.ref.child(self.uid!).child("categories").setValue(self.categories)
+                self.table.beginUpdates()
+                self.table.insertRows(at: [IndexPath(row: 0, section: 0)],
+                                          with: .automatic)
+                self.table.endUpdates()
+            } else {
+                print("キャンセルされました")
+            }
+        }
     }
     
     // セルの編集許可

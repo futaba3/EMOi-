@@ -42,11 +42,6 @@ class CommentTextViewController: UIViewController {
         
         commentTextView.text = comment
         commentTextView.becomeFirstResponder()
-        
-        // ステータスバーの文字色を黒くする
-        setNeedsStatusBarAppearanceUpdate()
-
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func done() {
@@ -57,32 +52,11 @@ class CommentTextViewController: UIViewController {
     }
 
     @IBAction func cancel(){
-    // 保存しますかアラートを出す
-        let alert: UIAlertController = UIAlertController(title: "前の画面に戻りますか？", message: "編集している内容は保存されません", preferredStyle: .alert)
-        // OKボタン
-        alert.addAction(
-            UIAlertAction(
-                title: "はい",
-                style: .destructive,
-                handler: { action in
-                    
-                    self.dismiss(animated: true, completion: nil)
-                    
-                    print("はいボタンが押されました！")
-            }
-            )
-        )
-        // キャンセルボタン
-        alert.addAction(
-            UIAlertAction(
-                title: "いいえ",
-                style: .cancel,
-                handler: {action in
-                    print("いいえボタンが押されました！")
-            }
-            )
-        )
-        present(alert, animated: true, completion: nil)
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
+        let okAction = UIAlertAction(title: "戻る", style: .destructive) { [weak self] _ in
+            self?.dismiss(animated: true, completion: nil)
+        }
+        showAlert(title: "RECORD入力画面に戻りますか？", message: "入力した内容は保存されません", actions: [cancelAction, okAction])
     }
 
 }

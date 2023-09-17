@@ -202,56 +202,29 @@ class EditGoodsViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     
-    // 保存するメソッド
     @IBAction func saveGoods(){
-        // なまえ入力されてないアラート
-        if titleTextField.text == ""{
-            let alert: UIAlertController = UIAlertController(title: "Stop!", message: "Titleを入力してください！", preferredStyle: .alert)
-            alert.addAction(
-                UIAlertAction(
-                    title: "cancel",
-                    style: .cancel,
-                    handler: nil
-                )
-            )
-            present(alert, animated: true, completion: nil)
-        }else if categoryLabel.text == "Select Category"{
-            let alert: UIAlertController = UIAlertController(title: "Stop!", message: "Categoryを選択してください！", preferredStyle: .alert)
-            alert.addAction(
-                UIAlertAction(
-                    title: "cancel",
-                    style: .cancel,
-                    handler: nil
-                )
-            )
-            present(alert, animated: true, completion: nil)
-        }else{
-            // 保存しますかアラート
-            let alert: UIAlertController = UIAlertController(title: "保存しますか？", message: titleTextField.text, preferredStyle: .alert)
-            // OKボタン
-            alert.addAction(
-                UIAlertAction(
-                    title: "yes",
-                    style: .default,
-                    handler: { action in
-                        
-                        self.upload()
-                        
-                        print("はいボタンが押されました！")
-                }
-                )
-            )
-            // キャンセルボタン
-            alert.addAction(
-                UIAlertAction(
-                    title: "cancel",
-                    style: .cancel,
-                    handler: {action in
-                        print("いいえボタンが押されました！")
-                }
-                )
-            )
-            present(alert, animated: true, completion: nil)
+        if let text = titleTextField.text, !text.isEmpty, categoryLabel.text != "Select Category" {
+            // titleTextField.textがnilでなく、かつ空でない、かつカテゴリーが選択されている場合の保存処理
+            let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
+            let okAction = UIAlertAction(title: "保存する", style: .default) { _ in
+                self.upload()
+            }
+            showAlert(title: "保存しますか？", message: text, actions: [cancelAction, okAction])
+        } else {
+            // 条件に合致しない場合の処理
+            var alertTitle = ""
+            var alertMessage = "保存に必要な情報が不足しています"
+            
+            if titleTextField.text == nil || titleTextField.text!.isEmpty {
+                // タイトル未入力の場合
+                alertTitle = "Titleを入力してください"
+            } else if categoryLabel.text == "Select Category" {
+                // カテゴリー未選択の場合
+                alertTitle = "Categoryを選択してください"
+            }
+            
+            let okAction = UIAlertAction(title: "OK", style: .default)
+            showAlert(title: alertTitle, message: alertMessage, actions: [okAction])
         }
     }
     
@@ -319,49 +292,32 @@ class EditGoodsViewController: UIViewController, UIImagePickerControllerDelegate
         
     }
     
-    @IBAction func deleteGoods() {
-        // 削除しますかアラート
-        let alert: UIAlertController = UIAlertController(title: "削除しますか？", message: titleTextField.text, preferredStyle: .alert)
-        // OKボタン
-        alert.addAction(
-            UIAlertAction(
-                title: "delete",
-                style: .destructive,
-                handler: { action in
-                    
-                    // アニメーション開始
-                    self.activityIndicatorView.startAnimating()
-                    
-                    self.ref.child(self.uid!).child("goods").child(self.good!.key).removeValue()
-                    // 画像も削除する
-                    let goodRef = self.storageRef.child(self.uid!).child(self.good!.image)
-                    goodRef.delete { error in
-                        if error != nil {
-                            // Uh-oh, an error occurred!
-                        } else {
-                            // File deleted successfully
-                        }
-                    }
-                    // アニメーション終了
-                    self.activityIndicatorView.stopAnimating()
-                    // メイン画面に移動
-                    self.navigationController?.popViewController(animated: true)
-                    
-                    print("削除ボタンが押されました！")
+    @IBAction func deleteGoodsButton() {
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel)
+        let okAction = UIAlertAction(title: "削除する", style: .destructive) { [weak self] _ in
+            self?.deleteGoods()
+            // メイン画面に移動
+            self?.navigationController?.popViewController(animated: true)
+        }
+        showAlert(title: "削除しますか？", message: "削除したGOODSは復元できません", actions: [cancelAction, okAction])
+    }
+    
+    func deleteGoods() {
+        // アニメーション開始
+        self.activityIndicatorView.startAnimating()
+        
+        self.ref.child(self.uid!).child("goods").child(self.good!.key).removeValue()
+        // 画像も削除する
+        let goodRef = self.storageRef.child(self.uid!).child(self.good!.image)
+        goodRef.delete { error in
+            if error != nil {
+                // Uh-oh, an error occurred!
+            } else {
+                // File deleted successfully
             }
-            )
-        )
-        // キャンセルボタン
-        alert.addAction(
-            UIAlertAction(
-                title: "cancel",
-                style: .cancel,
-                handler: {action in
-                    print("いいえボタンが押されました！")
-            }
-            )
-        )
-        present(alert, animated: true, completion: nil)
+        }
+        // アニメーション終了
+        self.activityIndicatorView.stopAnimating()
     }
 
 }
