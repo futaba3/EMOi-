@@ -16,8 +16,7 @@ class RecordViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet var table: UITableView!
     
-//    , UISearchResultsUpdating
-//    let searchController = UISearchController(searchResultsController: nil)
+    private let viewModel = RecordViewModel()
 
     var records: [Record] = []
     var categories: [String] = []
@@ -135,26 +134,26 @@ class RecordViewController: UIViewController, UITableViewDataSource, UITableView
     // cellに表示する内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:RecordTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as! RecordTableViewCell
-        let Record = records.filter { $0.category == self.categories[indexPath.section] } [indexPath.row]
+        let record = records.filter { $0.category == categories[indexPath.section] } [indexPath.row]
         
-        if Record.emotion == "1" {
-            cell.emotion.image = UIImage(named: "1_color")
-        } else  if Record.emotion == "2" {
-            cell.emotion.image = UIImage(named: "2_color")
-        } else if Record.emotion == "3" {
-            cell.emotion.image = UIImage(named: "3_color")
-        } else  if Record.emotion == "4" {
-            cell.emotion.image = UIImage(named: "4_color")
-        } else  if Record.emotion == "5" {
-            cell.emotion.image = UIImage(named: "5_color")
-        }
+//        if Record.emotion == "1" {
+//            cell.emotion.image = UIImage(named: "1_color")
+//        } else  if Record.emotion == "2" {
+//            cell.emotion.image = UIImage(named: "2_color")
+//        } else if Record.emotion == "3" {
+//            cell.emotion.image = UIImage(named: "3_color")
+//        } else  if Record.emotion == "4" {
+//            cell.emotion.image = UIImage(named: "4_color")
+//        } else  if Record.emotion == "5" {
+//            cell.emotion.image = UIImage(named: "5_color")
+//        }
 
-        
-        cell.title.text = Record.title
-        cell.date.text = Record.date
-        cell.result.text = Record.result
-        cell.place.text = Record.place
-        let reference = storageRef.child(uid!).child(Record.image)
+        cell.emotion.image = viewModel.getImage(record: record)
+        cell.title.text = record.title
+        cell.date.text = record.date
+        cell.result.text = record.result
+        cell.place.text = record.place
+        let reference = storageRef.child(uid!).child(record.image)
         cell.mainimg.sd_setImage(with: reference)
         
         return cell
